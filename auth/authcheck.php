@@ -1,27 +1,9 @@
-<?php 
-//SQL connection details
-$SQLServer="localhost";
-$SQLUser="root";
-$SQLPass="root";
-$SQLDB="InkStock";
-
-//URL Setting
-$Location = "http://localhost:8888/Ink-Stock-Manager";
-
-//########################################################################################
-//###################### Nothing should be changed below this point ######################
-//########################################################################################
-
-//Attempting to connect to db
-$con=mysqli_connect($SQLServer,$SQLUser,$SQLPass,$SQLDB);
-//check if the connection was sucessful (Fingers Crossed)
-if (mysqli_connect_errno())
-{
-echo "Connection to the database fell over: " . mysqli_connect_error();
-}
+<?php
+require ('../config/config.php');
 //Checking Authentication. Same file as the SQL connection details to avoid spoofing. 
 //Run check if user is not currently in the process of logging in
 if ($_SERVER["REQUEST_URI"] != $Location . "/auth/auth.php") {
+echo 'session not working!';
 if(isset($_SESSION['CUID'])){
 $CUID = $_SESSION['CUID'];
 $authquery = mysqli_query($con, "SELECT * 
@@ -56,4 +38,3 @@ The server responded with:
 exit;
 }
 }
-?>

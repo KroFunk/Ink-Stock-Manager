@@ -1,22 +1,6 @@
 <?PHP
-session_start();
 require "../config/config.php";
-/*SQL connection details
-$SQLServer="localhost";
-$SQLUser="root";
-$SQLPass="root";
-$SQLDB="InkStock";
 
-//Key for encryption
-$SALT="DDrSsARA~VqtEGpZpzETuztXQ ik6VH~7IHI% WYfDaZ%tyQn*OeQ_Sr=V d";
-//Attempting to connect to db
-$con=mysqli_connect($SQLServer,$SQLUser,$SQLPass,$SQLDB);
-//check if the connection was sucessful (Fingers Crossed)
-if (mysqli_connect_errno())
-{
-echo "Connection to the database fell over: " . mysqli_connect_error();
-}
-*/
 ?>
 <HTML>
 <head>
