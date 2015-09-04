@@ -38,7 +38,7 @@ else{
 session_destroy();
 header("HTTP/1.1 403 Unauthorized" );
 echo "User authentication failed.";
-echo "<a href='/ink/'>Click here to return to the login</a>";
+echo "<a href='" . $Location . "/'>Click here to return to the login</a>";
 exit;
 }
 }
