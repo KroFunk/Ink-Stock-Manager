@@ -1,0 +1,1 @@
+<p style="margin:0px;padding:10px;background:#333;color:eee;clear:both;text-align:center;">&copy; Robin Wright 2014 - 2015</p>

@@ -1,0 +1,133 @@
+body {
+	font-family:Roboto, sans-serif;
+}
+
+input[type=submit] {
+padding:5px;
+padding-top:7px;
+padding-left:7px;
+padding-right:7px;
+margin-left:5px;
+margin-right:5px;
+color:#fff;
+font-size:14px;
+background-color:#297acc;
+border:1px solid #103152;
+border-bottom:3px solid #103152;
+border-radius:3px;
+}
+
+input[type=button] {
+padding:5px;
+padding-top:7px;
+padding-left:7px;
+padding-right:7px;
+margin-left:5px;
+margin-right:5px;
+color:#fff;
+font-size:14px;
+background-color:#33CC33;
+border-radius:3px;
+border:1px solid #279b27;
+border-bottom:3px solid #207f20;
+min-width:50px;
+}
+
+input.Del {
+color:#fff;
+background-color:#ed3844;
+border:1px solid #9a1119;
+border-bottom:3px solid #790d14;
+}
+
+
+
+.box {
+	color:#000;
+	padding:5px;
+	border-radius:5px;
+	border:1px #999 solid;
+	margin:5px;
+    font-family: 'Open Sans', sans-serif;
+	background-image: linear-gradient(bottom, rgb(224,226,227) 9%, rgb(250,250,250) 62%);
+	background-image: -o-linear-gradient(bottom, rgb(224,226,227) 9%, rgb(250,250,250) 62%);
+	background-image: -moz-linear-gradient(bottom, rgb(224,226,227) 9%, rgb(250,250,250) 62%);
+	background-image: -webkit-linear-gradient(bottom, rgb(224,226,227) 9%, rgb(250,250,250) 62%);
+	background-image: -ms-linear-gradient(bottom, rgb(224,226,227) 9%, rgb(250,250,250) 62%);
+}
+.main {
+background-color:white;
+width:920px;
+margin:0 auto;
+padding:10px;
+padding-bottom:30px;
+box-shadow:#000 0px 0px 10px;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
+}
+#menu {
+width:100%;
+text-align:right;
+background:#333;
+}
+#menu a:link {
+text-decoration:none;
+padding-left:10px;
+color:#eee;
+}
+#menu a:visited {
+text-decoration:none;
+color:#eee;
+}
+img {
+vertical-align:middle;
+}
+#boxartBrowser {
+width:700px;
+height:500px;
+float:left;
+display:none;
+}
+#overflow {
+width:700px;
+height:500px;
+overflow-y:visible;
+overflow-x:hidden;
+}
+#upload {
+border:1px solid #ccc; 
+background:#fff; 
+padding:5px;
+float:right;
+width:300px;
+}
+div#tipDiv {
+    background-color:#E1E5F1; 
+    border:1px solid #667295;
+    padding:4px;
+    width:200px;
+}
+.function {
+float:left;
+z-index:99999999;
+}
+.function a:link {
+display:block;
+text-decoration:none;
+margin-right:2px;
+margin-left:1px;
+padding:2px;
+padding-bottom:3px;
+color:#000;
+}
+#width {
+width:920px;
+margin:0 auto;
+}
+h2 {
+padding:0px;
+margin-top:10px;
+-webkit-margin-before:10px;
+-webkit-margin-after:0em;
+}
+
