@@ -6,8 +6,8 @@ Transitioning to open source from a private and closed project.
 The project was neglected, currently requires a LOT of bug fixes.
 
 # Features
-Stock level monitoring,
-Auditing, 
-Reporting, 
-API,
-Purchase order assistant,
+-Stock level monitoring
+-Auditing
+-Reporting
+-API
+-Purchase order assistant
