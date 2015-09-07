@@ -19,6 +19,45 @@ document.getElementById('password').style.color='grey';
 </script>
 
 
+<script>
+//Attempt Login
+function AttemptLogin() {
+var xmlhttp;
+var un = document.getElementById("email").value;
+var pw = document.getElementById("password").value;
+
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    var obj = JSON.parse(xmlhttp.responseText);
+    if(obj.response[0].request === 'login') {
+    document.getElementById("InfoOptions").innerHTML="<div class='servermessage'>Auth: " + obj.response[0].status + "</div>";
+    if(obj.response[0].status === 'success') {
+    window.location.assign("<?php echo $Location; ?>/stock/");
+    }
+    }
+
+    }
+  }
+  
+xmlhttp.open("POST","<?php echo $Location; ?>/api/v1/authentication/",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("action=login&email=" + un + "&password=" + pw);
+
+return false;
+}
+</script>
+
+
 </head>
 <body style="margin:0px; padding:0px;">
 <img src="../incs/blur.jpg" class="bg" />
@@ -39,10 +78,17 @@ if($authresult != NULL) { //i.e. if there are users, show the login.
 ?>
 <h1>Ink Stock Manager</h1>
 
-<form action="auth.php" method="POST">
+
+
+<div id="InfoOptions">
+
+</div>
+
+<form action="<?php echo $Location; ?>/api/v1/authentication/" method="POST" onsubmit="return AttemptLogin();">
 <input class="textbox" id="email" type="email" value="Email Address"  onclick="if(this.value=='Email Address'){this.value='';this.style.color='black';}" onblur="if(this.value==''){this.value='Email Address';this.style.color='grey';}" name="email" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;"><br/>
 <input class="textbox" id="password" type="text" value="Password" onClick="" onFocus="this.type='password';this.style.color='black'; if(this.value=='Password'){this.value='';}" onblur="if(this.value==''){this.value='Password';this.type='text';this.style.color='grey';}" name="password" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;color:grey;"><br/>
-<input class="textbox" type="submit" value="Login" style="width:250px; font-size:14px; background-color:#297ACC; border-color:#103152; color:#fff; padding:5px;margin-bottom:25px;" />
+<input type="hidden" name="action" value="login" />
+<input class="textbox" type="submit" onclick="return AttemptLogin();" value="Login" style="width:250px; font-size:14px; background-color:#297ACC; border-color:#103152; color:#fff; padding:5px;margin-bottom:25px;" />
 </form>
 
 <?
