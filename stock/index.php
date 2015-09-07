@@ -1,6 +1,6 @@
 <?PHP
 session_start();
-require "config/config.php";
+require "../config/config.php";
 ?>
 <HTML>
 <head>
@@ -112,7 +112,7 @@ $(document).ready(function() {
 
 <?PHP
 //echo "<div id='menu'>";
-include "incs/menu.inc";
+include "../incs/menu.inc";
 //echo "</div>";
 ?>
 <div class='HeaderBanner'>Stock <img src="icns/question.png" /><div id="SubHeader" class='SubHeaderBanner'><b>Loading, please wait...</b></div></div>

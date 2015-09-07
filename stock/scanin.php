@@ -1,6 +1,6 @@
 <?PHP
 session_start();
-require "config/config.php";
+require "../config/config.php";
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">

@@ -1,6 +1,6 @@
 <?PHP
 session_start();
-require "config/config.php";
+require "../config/config.php";
 if(isset($_GET['index'])){$index = $_GET['index'];}
 ?>
 <!DOCTYPE html>
