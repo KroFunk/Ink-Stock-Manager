@@ -1,5 +1,5 @@
 <?PHP
-session_start();
+
 require "../config/config.php";
 $index = $_GET['index'];
 ?>

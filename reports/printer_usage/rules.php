@@ -1,5 +1,5 @@
 <?PHP
-session_start();
+
 require "../../config/config.php";
 if (isset($_GET['fromdate'])){
 $fromdate = $_GET['fromdate'];

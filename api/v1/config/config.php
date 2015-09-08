@@ -11,7 +11,7 @@ $Directory="http://localhost/ink/";
 //########################################################################################
 //###################### Nothing should be changed below this point ######################
 //########################################################################################
-session_start();
+
 //header('Content-Type: application/json');
 $Response = array();
 $Response['api name'] = "Robins Ink Stock Manager Web API";

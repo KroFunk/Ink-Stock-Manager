@@ -1,5 +1,4 @@
 <?PHP
-session_start();
 require ('../config/config.php');
 ?>
 <HTML>
@@ -91,7 +90,7 @@ if($authresult != NULL) { //i.e. if there are users, show the login.
 <input class="textbox" type="submit" onclick="return AttemptLogin();" value="Login" style="width:250px; font-size:14px; background-color:#297ACC; border-color:#103152; color:#fff; padding:5px;margin-bottom:25px;" />
 </form>
 
-<?
+<?PHP
 }
 else { //show user creation if there are no users
 ?>
@@ -105,7 +104,7 @@ else { //show user creation if there are no users
 <input class="textbox" type="submit" value="Create" style="width:250px; font-size:14px; background-color:#297ACC; border-color:#103152; color:#fff; padding:5px;margin-bottom:25px;" />
 </form>
 
-<?
+<?PHP
 }
 
 ?>

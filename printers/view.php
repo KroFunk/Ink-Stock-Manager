@@ -1,5 +1,5 @@
 <?PHP
-session_start();
+
 require "../config/config.php";
 $redirect = "&redirect=/ink/printers/view.php?index=" . $_GET['index'];
 ?>
