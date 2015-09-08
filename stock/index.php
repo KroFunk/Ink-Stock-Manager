@@ -5,11 +5,11 @@ require "../config/config.php";
 <head>
 <title>Stock Manager | Admin | &copy; Robin Wright 2014</title>
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,100' rel='stylesheet' type='text/css'>
-<link href='admin.css' rel='stylesheet' type='text/css'>
-<link href='demo_table.css' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="incs/robins.iframe.wrapper.js"></script>
-<script type="text/javascript" src="incs/jquery.min.js"></script>
-<script type="text/javascript" src="incs/jquery.dataTables.nightly.js"></script>
+<link href='../admin.css' rel='stylesheet' type='text/css'>
+<link href='../demo_table.css' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="../incs/robins.iframe.wrapper.js"></script>
+<script type="text/javascript" src="../incs/jquery.min.js"></script>
+<script type="text/javascript" src="../incs/jquery.dataTables.nightly.js"></script>
 
 
 <script>
@@ -99,7 +99,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body style="margin:0px; padding:0px;">
-<img src="incs/blur.jpg" class="bg" />
+<img src="../incs/blur.jpg" class="bg" />
 
 <div class="tablescroll dataScreenOptimised" id="tablescroll" style="display:none;">
 <table class="display" cellpadding="5" celspacing="0" width="100%" style="width:100%;">
@@ -114,7 +114,7 @@ $(document).ready(function() {
 include "../incs/menu.inc";
 //echo "</div>";
 ?>
-<div class='HeaderBanner'>Stock <img src="icns/question.png" /><div id="SubHeader" class='SubHeaderBanner'><b>Loading, please wait...</b></div></div>
+<div class='HeaderBanner'>Stock <img src="../icns/question.png" /><div id="SubHeader" class='SubHeaderBanner'><b>Loading, please wait...</b></div></div>
 <div class="main" onmouseover="Hide('ReportsMenu')" >
 <!--
 Server message would go here!
@@ -122,10 +122,10 @@ Server message would go here!
 <div>
 
 <div class='function'>
-<a class="function wrapper" href="javascript:openwrapper('addnew.php', '800', '220')"><img src="icns/new.png"/> Add New Ink/Toner</a>
-<a class="function refresh" href="javascript:location.reload();"><img src="icns/refresh.png"/> Refresh!</a>
-<a class="function wrapper" href="javascript:openwrapper('scanin.php', '640', '420')"><img src="icns/UPC.png"/> Scan Stock In</a>
-<a class="function wrapper" href="javascript:openwrapper('scanout.php', '640', '420')"><img src="icns/UPC.png"/> Scan Stock Out</a>
+<a class="function wrapper" href="javascript:openwrapper('addnew.php', '800', '220')"><img src="../icns/new.png"/> Add New Ink/Toner</a>
+<a class="function refresh" href="javascript:location.reload();"><img src="../icns/refresh.png"/> Refresh!</a>
+<a class="function wrapper" href="javascript:openwrapper('scanin.php', '640', '420')"><img src="../icns/UPC.png"/> Scan Stock In</a>
+<a class="function wrapper" href="javascript:openwrapper('scanout.php', '640', '420')"><img src="../icns/UPC.png"/> Scan Stock Out</a>
 </div>
 
 <div class='dataScreenOptimised'>
@@ -168,7 +168,7 @@ if($row['OrderURL'] == "")
 $order = "";
 }
 else{
-$order = "<a href='" . 'javascript:popout("' . $row['OrderURL'] . '")' .  "' target='_new'><img src='icns/order.png'/></a>";
+$order = "<a href='" . 'javascript:popout("' . $row['OrderURL'] . '")' .  "' target='_new'><img src='../icns/order.png'/></a>";
 }
 
  if ($row['Colour'] == 1) {
@@ -193,9 +193,9 @@ $OnOrder = "javascript:openwrapper('onorder.php?index=$ThisIID','400','220')";
   number_format(($row['Price']*$row['Stock']), 2, '.', '') . "</td><td>
   <center><a style='color:#000; text-decoration:none;' href=" . '"' . $OnOrder . '">' . $row['OnOrder'] . "</a></center></td><td><center>" . $order . "</center></td><td></td>
   <td><center><a href=" . $editBTN . 
-  "><img src='icns/edit.png'/></a></center></td><td><center><a href=" . '"' . $audit . '"' . "><img src='icns/audit.png'/></a></center></td><td>
-  <center><a href=" . $addBTN . "><img src='icns/plus.png'/></a>&nbsp;&nbsp;<a href=" . $removeBTN . 
-  "><img src='icns/minus.png'/></a></center></td></tr>";
+  "><img src='../icns/edit.png'/></a></center></td><td><center><a href=" . '"' . $audit . '"' . "><img src='../icns/audit.png'/></a></center></td><td>
+  <center><a href=" . $addBTN . "><img src='../icns/plus.png'/></a>&nbsp;&nbsp;<a href=" . $removeBTN . 
+  "><img src='../icns/minus.png'/></a></center></td></tr>";
 $style = $style + 1;
   
 $StockCount = $StockCount + $row['Stock'];
@@ -236,7 +236,7 @@ mysqli_close($con);
 
 <div class="footerfill"></div>
 
-<?php include "incs/footer.inc"; ?>
+<?php include "../incs/footer.inc"; ?>
 
 <p style="margin:0px;padding:0px;clear:both;text-align:center;"></p>
 
@@ -259,7 +259,7 @@ mysqli_close($con);
 
 <!-- The 'X' button -->
 <a href="javascript:void(0);" onclick="closewrapper();">
-<img id="iframeX" src="icns/X.png" style="position:relative; top:-10px; left:735px; border:0 none;">
+<img id="iframeX" src="../icns/X.png" style="position:relative; top:-10px; left:735px; border:0 none;">
 </a>
 
 <!-- Actual iFrame container -->
