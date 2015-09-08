@@ -29,7 +29,7 @@ background:#2b2e31;
 
 <div data-role="collapsible" data-theme="a" data-content-theme="a">
 <h2>Authentication</h2>
-<p>PATH: <? echo $Directory; ?>api/v1/authentication/</p>
+<p>PATH: <? echo $Location; ?>api/v1/authentication/</p>
 <p>Authentication API used to create or destroy a session.</p>
 <p>Authentication is required to access all other operations.</p>
 <div data-role="collapsible" data-theme="a" data-content-theme="a">
@@ -38,7 +38,7 @@ background:#2b2e31;
 <input type="hidden" name="action" value="login" />
 <input  id="email" type="email" value="Email Address"  onclick="if(this.value=='Email Address'){this.value='';this.style.color='black';}" onblur="if(this.value==''){this.value='Email Address';this.style.color='grey';}" name="email" style="color:grey;">
 <input  id="password" type="text" value="Password" onClick="if(this.value=='Password'){this.value='';}" onFocus="if(this.value=='Password'){this.value='';} this.type='password';this.style.color='black';" onblur="if(this.value==''){this.value='Password';this.type='text';this.style.color='grey';}" name="password" style="color:grey;">
-<input  type="submit" value="Login"  />
+<input  type="button" value="Login"  />
 </form>
 </div>
 <div data-role="collapsible">
@@ -52,7 +52,7 @@ background:#2b2e31;
 
 <div data-role="collapsible">
 <h2>List</h2>
-<p>PATH: <? echo $Directory; ?>api/v1/list/list.php</p>
+<p>PATH: <? echo $Location; ?>api/v1/list/list.php</p>
 <p>List API used to fetch data from the database.</p>
 <div data-role="collapsible" data-theme="a" data-content-theme="a">
 <h2>Stock</h2>
@@ -113,7 +113,7 @@ Show:
 
 <div data-role="collapsible">
 <h2>Update</h2>
-<p>PATH: <? echo $Directory; ?>api/v1/update/update.php</p>
+<p>PATH: <? echo $Location; ?>api/v1/update/update.php</p>
 <p>Update API used to modify existing stock, printer and location records in the database.
 <strong><br/>This operation is recorded in the Audit</strong></p>
 <div data-role="collapsible" data-theme="a" data-content-theme="a">
@@ -213,7 +213,7 @@ Where DID EQUALS:
 <div data-role="collapsible" data-theme="a" data-content-theme="a">
 <h2>Create (Requires admin permissions)</h2>
 
-<p>PATH: <? echo $Directory; ?>api/v1/list/create.php</p>
+<p>PATH: <? echo $Location; ?>api/v1/list/create.php</p>
 <p>Create API used to make new stock, printer and location records in the database.
 <strong><br/>This operation is recorded in the Audit</strong></p>
 
@@ -304,7 +304,7 @@ PID:
 <div data-role="collapsible" data-theme="a" data-content-theme="a">
 <h2>Delete (Requires admin permissions)</h2>
 
-<p>PATH: <? echo $Directory; ?>api/v1/list/delete.php</p>
+<p>PATH: <? echo $Location; ?>api/v1/list/delete.php</p>
 <p>Update API used to delete existing stock, printer and location records in the database.
 <strong><br/>This operation is recorded in the Audit</strong></p>
 
