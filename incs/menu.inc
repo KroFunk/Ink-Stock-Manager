@@ -3,7 +3,7 @@
 <div style='float:left;'>
 <img src="<?php echo $Location ?>/icns/logo.png" height="22px" />
 Ink Stock Manager 
-<a href='<?php echo $Location ?>/ink.php' target='_parent'>Stock</a> 
+<a href='<?php echo $Location ?>/stock/' target='_parent'>Stock</a> 
 <a href='<?php echo $Location ?>/printers/'>Printers</a> 
 <a href='<?php echo $Location ?>/audit'>Audit</a> 
 <a href='<?php echo $Location ?>/stockcheck/' target='_new'>Stock Check</a> 

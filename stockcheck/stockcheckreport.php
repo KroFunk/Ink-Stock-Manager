@@ -1,5 +1,5 @@
 <?PHP
-session_start();
+
 $SQLServer="localhost";
 $SQLUser="root";
 $SQLPass="root";
