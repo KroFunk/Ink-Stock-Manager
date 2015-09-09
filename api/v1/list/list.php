@@ -1,11 +1,11 @@
 <?PHP
-require "../config/config.php";
+require "../../../config/config.php";
 require "../config/authcheck.php";
 
 $Response['operation'] = "list";
 $Response['response'] = array();
 $Response['data'] = array();
-if(isset($_POST['action'])) {
+if(isset($_POST['action']) OR isset($_GET['action'])) {
 
 //----------------\\
 //-- List Stock --\\
@@ -37,6 +37,38 @@ if($_POST['action'] == "liststock"){
 									);    
 	}
 	$Response['response'][] = array( "request" => "liststock", "status" => "success");
+}
+
+//---------------------\\
+//-- List DataTables --\\
+//---------------------\\
+
+if($_GET['action'] == "listtables"){
+	if($_POST['IID'] != "") {
+		$WHERE = " WHERE `stock`.`IID` =" . $_POST['IID'];
+	}
+	else {
+		$WHERE = "";
+	}
+	$result = mysqli_query($con, "SELECT * FROM Stock LEFT JOIN Printers ON Stock.PID=Printers.PID $WHERE");
+	while($row = mysqli_fetch_array($result))
+	{    
+		$Response['data'][] = array( 
+									 $row['PrinterMake'] . " " . $row['PrinterModel'] . " (" . $row['Type'] . ")",
+									 $row['InkName'],
+									 number_format($row['Price'], 2, '.', ''),
+									 $row['Stock'] . " (ideal: " . $row['StockDefault'] . ")",
+									 ((number_format($row['Price'], 2, '.', '')) * $row['Stock']),
+									 $row['OnOrder'],
+									 $row['OrderURL'],
+									 " ", 
+									 '<a href="javascript:openwrapper(' . "'editstock.php?index=" . $row['IID'] . "','920','320'" . ')"><img src="../icns/edit.png"></a>',
+									 '<a href="javascript:openwrapper(' . "'auditview.php?index=" . $row['InkName'] . "','920','400'" . ')"><img src="../icns/audit.png"></a>',
+									 '<a href="javascript:openwrapper(' . "'addstock.php?index=" . $row['IID'] . "','400','240'" . ')"><img src="../icns/plus.png"></a>' . 
+									 '<a href="javascript:openwrapper(' . "'removestock.php?index=" . $row['IID'] . "','400','240'" . ')"><img src="../icns/minus.png"></a>'
+									);    
+	}
+	$Response['response'][] = array( "request" => "listtables", "status" => "success");
 }
 
 //----------------\\

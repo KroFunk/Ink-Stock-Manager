@@ -16,86 +16,30 @@ require "../config/config.php";
 <script>
 $(document).ready(function() {
     var table = $('#example').DataTable({
-        "columnDefs": [
-            { "visible": false, "targets": 0 },
-			{
-            targets: [ 0 ],
-            orderData: [ 0, 1 ]
-        }, 
-		{
-            targets: [ 1 ],
-            orderData: [ 0, 1 ]
-        }
-        ],
-        "bAutoWidth": false,
-		"bPaginate": false,
-        "paging": false,
-        "order": [[ 0, 'asc' ]],
-		
-		
-		"drawCallback": function ( settings, row, data, start, end, display ) {
-            var api = this.api();
-            var rows = api.rows( {page:'current'} ).nodes();
-            var last=null;
-			
-			// Remove the formatting to get integer data for summation
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\£,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
- 
-            // Total over all pages
-            total = api
-                .column( 4 )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                } );
- 
-            // Total over this page
-            pageTotal = api
-                .column( 4, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
- 
-            // Update footer
-            $( api.column( 4 ).footer() ).html(
-                '£'+pageTotal.toFixed(2) +' (£'+ total.toFixed(2) +' total)'
-            );
-			
-			
-			
-			
- 
-            api.column(0, {page:'current'} ).data().each( function ( group, i ) {
-                if ( last !== group ) {
-                    $(rows).eq( i ).before(
-                        '<tr class="group"><td colspan="10">'+group+'</td></tr>'
-                    );
- 
-                    last = group;
-                }
-            } );
-        }
-		
-    } );
- 
-    // Order by the grouping
-    $('#example tbody').on( 'click', 'tr.group', function () {
-        var currentOrder = table.order()[0];
-        if ( currentOrder[0] === 0 && currentOrder[1] === 'asc' ) {
-            table.order( [ 0, 'desc' ] ).draw();
-        }
-        else {
-            table.order( [ 0, 'asc' ] ).draw();
-        }
-		
-		
-    } );
+"ajax": 'http://localhost:8888/Ink-Stock-Manager/api/v1/list/list.php?action=listtables',
+
+"columnDefs": [
+{ "visible": false, "targets": 0 },
+{
+targets: [ 0 ],
+orderData: [ 0, 1 ]
+}, 
+{
+targets: [ 1 ],
+orderData: [ 0, 1 ]
+}
+],
+        
+"bAutoWidth": false,
+"bPaginate": false,
+"paging": false,
+"order": [[ 0, 'asc' ]],
+
+
+        
+
+        
+} );
 } );
 </script>
 </head>
@@ -134,79 +78,7 @@ Server message would go here!
 <thead>
 <tr style='background-color:#666; color:#eee;'><td>Printer</td><td style="width:35%;">Ink Name</td><td width="100px">Price</td><td width="120px">Stock</td><td width="100px">Value</td><td width="65px"><center>On Order</center><td width="45px">Order</td><td></td><td width="40px"><center>Edit</center></td></td><td width="60px"><center>History</center></td><td width="55px">Update</td></tr>
 </thead>
-<tbody>
-<?PHP
-$style = 0;
 
-$StockCount = 0;
-$ProductCount = 0;
-$OrderCount = 0;
-$StockValue = 0;
-
-$result = mysqli_query($con, "SELECT * FROM Stock INNER JOIN Printers ON Stock.PID=Printers.PID");
-
-while($row = mysqli_fetch_array($result))
-  {
-  if($row['OnOrder'] > 0){
-  $bg = "#12bb05";
-  }
-  else if ($row['Stock'] <= $row['StockWarning']){
-  $bg = "#f75b68";
-  }
-  else{ 
-$bg = "";
-}
-
-
-  if ($row['Stock'] <= $row['StockWarning'] && $row['OnOrder'] > 0){
-  $bg = "#f8d804";
-  }
-
-
-
-if($row['OrderURL'] == "")
-{
-$order = "";
-}
-else{
-$order = "<a href='" . 'javascript:popout("' . $row['OrderURL'] . '")' .  "' target='_new'><img src='../icns/order.png'/></a>";
-}
-
- if ($row['Colour'] == 1) {
-  $colour = "Colour";
-  }
-  else {
-  $colour = "Mono";
-  }
-
-
-$ThisIID = $row['IID'];
-$ThisInkName = $row['InkName'];
-$editBTN = "javascript:openwrapper('editstock.php?index=$ThisIID','920','320')";
-$addBTN = "javascript:openwrapper('addstock.php?index=$ThisIID','400','240')";
-$removeBTN = "javascript:openwrapper('removestock.php?index=$ThisIID','400','240')";
-$audit = "javascript:openwrapper('auditview.php?index=$ThisInkName','920','400')";
-$OnOrder = "javascript:openwrapper('onorder.php?index=$ThisIID','400','220')";
-
-  echo "<tr style='background:$bg;' id='" . $row['IID'] . "' onclick=" . "'" . "highlightRow(" . $row['IID'] . ")" .
-  "'" . " ><td>" . $row['PrinterMake'] . " " . $row['PrinterModel'] . " <span style='color:#333;'>(" . $row['Type'] . ") (" . $colour . ")</span></td><td>" . $row['InkName'] . 
-  "</td><td>&pound;" . number_format($row['Price'], 2, '.', '') . "</td><td>" . $row['Stock'] . "<div style='color:#333; text-align:right; float:right;'> (ideal: " . $row['StockDefault'] . ")</div></td><td>&pound;" .
-  number_format(($row['Price']*$row['Stock']), 2, '.', '') . "</td><td>
-  <center><a style='color:#000; text-decoration:none;' href=" . '"' . $OnOrder . '">' . $row['OnOrder'] . "</a></center></td><td><center>" . $order . "</center></td><td></td>
-  <td><center><a href=" . $editBTN . 
-  "><img src='../icns/edit.png'/></a></center></td><td><center><a href=" . '"' . $audit . '"' . "><img src='../icns/audit.png'/></a></center></td><td>
-  <center><a href=" . $addBTN . "><img src='../icns/plus.png'/></a>&nbsp;&nbsp;<a href=" . $removeBTN . 
-  "><img src='../icns/minus.png'/></a></center></td></tr>";
-$style = $style + 1;
-  
-$StockCount = $StockCount + $row['Stock'];
-$ProductCount++;
-$OrderCount = $OrderCount + $row['OnOrder'];
-$StockValue = $StockValue +  number_format(($row['Price']*$row['Stock']), 2, '.', '');
-  
-  }
-?>
-</tbody>
 <tfoot>
 <tr><td colspan="4" style="text-align:right" rowspan="1">Showing:</td><td rowspan="1" colspan="4" style="text-align:left;" >Loading</td></tr>
 </tfoot>

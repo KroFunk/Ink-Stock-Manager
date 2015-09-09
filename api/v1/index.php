@@ -57,7 +57,7 @@ background:#2b2e31;
 <div data-role="collapsible" data-theme="a" data-content-theme="a">
 <h2>Stock</h2>
 <form action="list/list.php" data-ajax="false" method="POST">
-<input type="hidden" name="action" value="liststock" />
+<input type="hidden" name="action" value="listtables" />
 Where IID EQUALS: (optional)
 <input  type="number" name="IID" >
 <input  type="submit" value="List Stock"  />
