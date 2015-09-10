@@ -1,55 +1,18 @@
 <?PHP
 require "../../../config/config.php";
-require "../config/authcheck.php";
+require "../../../auth/authcheck.php";
 
 $Response['operation'] = "list";
 $Response['response'] = array();
 $Response['data'] = array();
-if(isset($_POST['action']) OR isset($_GET['action'])) {
 
-//----------------\\
-//-- List Stock --\\
-//----------------\\
-
-if($_POST['action'] == "liststock"){
-	if($_POST['IID'] != "") {
-		$WHERE = " WHERE `stock`.`IID` =" . $_POST['IID'];
-	}
-	else {
-		$WHERE = "";
-	}
-	$result = mysqli_query($con, "SELECT * FROM Stock LEFT JOIN Printers ON Stock.PID=Printers.PID $WHERE");
-	while($row = mysqli_fetch_array($result))
-	{    
-		$Response['data'][] = array( "IID" => $row['IID'], 
-									 "InkName" => $row['InkName'],
-									 "Price" => number_format($row['Price'], 2, '.', ''),
-									 "StockWarning" => $row['StockWarning'],
-									 "StockDefault" => $row['StockDefault'],
-									 "Stock" => $row['Stock'],
-									 "ProductCode" => $stockrow['ProductCode'],
-                                     "Description" => $stockrow['Description'],
-									 "OnOrder" => $row['OnOrder'],
-									 "OrderURL" => $row['OrderURL'],
-									 "UPC" => $row['UPC'],
-									 "PID" => $row['PID'],
-									 "Printer" => $row['PrinterMake'] . " " . $row['PrinterModel']
-									);    
-	}
-	$Response['response'][] = array( "request" => "liststock", "status" => "success");
-}
-
+if (isset($_GET['action'])) {
 //---------------------\\
 //-- List DataTables --\\
 //---------------------\\
 
-if($_GET['action'] == "listtables"){
-	if($_POST['IID'] != "") {
-		$WHERE = " WHERE `stock`.`IID` =" . $_POST['IID'];
-	}
-	else {
+if(@$_GET['action'] == "listtables"){
 		$WHERE = "";
-	}
 	$result = mysqli_query($con, "SELECT * FROM Stock LEFT JOIN Printers ON Stock.PID=Printers.PID $WHERE");
 	while($row = mysqli_fetch_array($result))
 	{    
@@ -70,6 +33,44 @@ if($_GET['action'] == "listtables"){
 	}
 	$Response['response'][] = array( "request" => "listtables", "status" => "success");
 }
+}
+
+
+
+if(isset($_POST['action'])) {
+
+//----------------\\
+//-- List Stock --\\
+//----------------\\
+
+if($_POST['action'] == "liststock"){
+	if($_POST['IID'] != "") {
+		$WHERE = " WHERE `stock`.`IID` =" . $_POST['IID'];
+	}
+	else {
+		$WHERE = "";
+	}
+	$result = mysqli_query($con, "SELECT * FROM Stock LEFT JOIN Printers ON Stock.PID=Printers.PID $WHERE") or die ('Unable to execute query. '. mysqli_error($con));
+	while($row = mysqli_fetch_array($result))
+	{    
+		$Response['data'][] = array( "IID" => $row['IID'], 
+									 "InkName" => $row['InkName'],
+									 "Price" => number_format($row['Price'], 2, '.', ''),
+									 "StockWarning" => $row['StockWarning'],
+									 "StockDefault" => $row['StockDefault'],
+									 "Stock" => $row['Stock'],
+									 "ProductCode" => $row['ProductCode'],
+                                     "Description" => $row['Description'],
+									 "OnOrder" => $row['OnOrder'],
+									 "OrderURL" => $row['OrderURL'],
+									 "UPC" => $row['UPC'],
+									 "PID" => $row['PID'],
+									 "Printer" => $row['PrinterMake'] . " " . $row['PrinterModel']
+									);    
+	}
+	$Response['response'][] = array( "request" => "liststock", "status" => "success");
+}
+
 
 //----------------\\
 //-- List Users --\\
@@ -154,12 +155,12 @@ $Response['response'][] = array( "request" => "listusers", "status" => "fail");
 else if($_POST['action'] == "listprinters"){
 
 $foo = 0;
-
+$WHERE = "";
 if($_POST['PID'] != "") {
      $WHERE = " WHERE `printers`.`PID` =" . $_POST['PID'];
      }
 
-$printers = mysqli_query($con, "SELECT * FROM Printers $WHERE");
+$printers = mysqli_query($con, "SELECT * FROM Printers $WHERE") or die ('Unable to execute query. '. mysqli_error($con));
 while($row = mysqli_fetch_array($printers))
   {
      
@@ -306,6 +307,11 @@ $Response['response'][] = array( "request" => "invalid", "status" => "fail");
 }
 }
 else {
-$Response['response'][] = array( "request" => "none", "status" => "fail");
+if(@$_GET['action'] == "listtables"){
+	//nothing
+}
+else {
+	$Response['response'][] = array( "request" => "none", "status" => "fail");
+}
 }
 echo json_encode($Response, JSON_PRETTY_PRINT);

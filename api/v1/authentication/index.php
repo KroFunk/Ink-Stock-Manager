@@ -1,6 +1,6 @@
 <?PHP
 header('Content-Type: application/json');
-require "../config/config.php";
+require "../../../config/config.php";
 $Response['operation'] = "authentication";
 $Response['response'] = array();
 if(isset($_POST['action'])){

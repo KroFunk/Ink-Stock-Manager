@@ -1,6 +1,7 @@
 <?PHP
 require "../config/config.php";
 ?>
+<!DOCTYPE html>
 <HTML>
 <head>
 <title>Stock Manager | Admin | &copy; Robin Wright 2014</title>
@@ -15,7 +16,7 @@ require "../config/config.php";
 <script>
 $(document).ready(function() {
     var table = $('#example').DataTable({
-"ajax": 'http://localhost:8888/Ink-Stock-Manager/api/v1/list/list.php?action=listtables',
+"ajax": '<?php echo $Location; ?>/api/v1/list/list.php?action=listtables',
 
 "columnDefs": [
 { "visible": false, "targets": 0 },
@@ -84,10 +85,10 @@ Server message would go here!
 </table>
 
 
-<?php echo 
+<?php //echo 
 "<script>
 window.onload = function(updatesubheader) {
-document.getElementById('SubHeader').innerHTML = '$ProductCount products, $StockCount in stock with a value of &pound;$StockValue. $OrderCount On Order.';
+document.getElementById('SubHeader').innerHTML = 'ProductCount products, StockCount in stock with a value of &pound;StockValue. OrderCount On Order.';
 }
 </script>"
 ?>

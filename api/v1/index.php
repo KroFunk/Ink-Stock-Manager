@@ -38,7 +38,7 @@ background:#2b2e31;
 <input type="hidden" name="action" value="login" />
 <input  id="email" type="email" value="Email Address"  onclick="if(this.value=='Email Address'){this.value='';this.style.color='black';}" onblur="if(this.value==''){this.value='Email Address';this.style.color='grey';}" name="email" style="color:grey;">
 <input  id="password" type="text" value="Password" onClick="if(this.value=='Password'){this.value='';}" onFocus="if(this.value=='Password'){this.value='';} this.type='password';this.style.color='black';" onblur="if(this.value==''){this.value='Password';this.type='text';this.style.color='grey';}" name="password" style="color:grey;">
-<input  type="button" value="Login"  />
+<input  type="submit" value="Login"  />
 </form>
 </div>
 <div data-role="collapsible">
@@ -57,7 +57,7 @@ background:#2b2e31;
 <div data-role="collapsible" data-theme="a" data-content-theme="a">
 <h2>Stock</h2>
 <form action="list/list.php" data-ajax="false" method="POST">
-<input type="hidden" name="action" value="listtables" />
+<input type="hidden" name="action" value="liststock" />
 Where IID EQUALS: (optional)
 <input  type="number" name="IID" >
 <input  type="submit" value="List Stock"  />
