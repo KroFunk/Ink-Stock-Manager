@@ -10,37 +10,49 @@ require "../config/config.php";
 <link href='../demo_table.css' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="../incs/robins.iframe.wrapper.js"></script>
 <script type="text/javascript" src="../incs/jquery.min.js"></script>
-<script type="text/javascript" src="../incs/jquery.dataTables.nightly.js"></script>
 
 
 <script>
-$(document).ready(function() {
-    var table = $('#example').DataTable({
-"ajax": '<?php echo $Location; ?>/api/v1/list/list.php?action=listtables',
+window.onload = function PopulateData() {   
 
-"columnDefs": [
-{ "visible": false, "targets": 0 },
-{
-targets: [ 0 ],
-orderData: [ 0, 1 ]
-}, 
-{
-targets: [ 1 ],
-orderData: [ 0, 1 ]
+//Grab data
+var obj = JSON.parse('<?php echo $Location; ?>/api/v1/list/list.php?action=liststocktables');
+
+// Grab Table
+var table = document.getElementById("displaydata");
+
+// Create an empty <tr> element and add it to the 1st position of the table:
+var row = table.insertRow(1);
+
+// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+var cell1 = row.insertCell(0);
+var cell2 = row.insertCell(1);
+var cell3 = row.insertCell(2);
+var cell4 = row.insertCell(3);
+var cell5 = row.insertCell(4);
+var cell6 = row.insertCell(5);
+var cell7 = row.insertCell(6);
+var cell8 = row.insertCell(7);
+var cell9 = row.insertCell(8);
+var cell10 = row.insertCell(9);
+var cell11 = row.insertCell(10);
+
+
+// Add some text to the new cells:
+cell1.innerHTML = obj.data[0];
+cell2.innerHTML = "NEW CELL2";
+cell3.innerHTML = "NEW CELL1";
+cell4.innerHTML = "NEW CELL2";
+cell5.innerHTML = "NEW CELL1";
+cell6.innerHTML = "NEW CELL2";
+cell7.innerHTML = "NEW CELL1";
+cell8.innerHTML = "NEW CELL2";
+cell9.innerHTML = "NEW CELL1";
+cell10.innerHTML = "NEW CELL2";
+cell11.innerHTML = "NEW CELL1";
+
 }
-],
-        
-"bAutoWidth": false,
-"bPaginate": false,
-"paging": false,
-"order": [[ 0, 'asc' ]],
-
-
-        
-
-        
-} );
-} );
+    		        
 </script>
 </head>
 <body style="margin:0px; padding:0px;">
@@ -74,7 +86,7 @@ Server message would go here!
 </div>
 
 <div class='dataScreenOptimised'>
-<table id="example" class="display" cellpadding="5" celspacing="0" width="100%" style="width:100%;">
+<table id="displaydata" class="display" cellpadding="5" celspacing="0" width="100%" style="width:100%;">
 <thead>
 <tr style='background-color:#666; color:#eee;'><td>Printer</td><td style="width:35%;">Ink Name</td><td width="100px">Price</td><td width="120px">Stock</td><td width="100px">Value</td><td width="65px"><center>On Order</center><td width="45px">Order</td><td></td><td width="40px"><center>Edit</center></td></td><td width="60px"><center>History</center></td><td width="55px">Update</td></tr>
 </thead>

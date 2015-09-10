@@ -11,7 +11,7 @@ if (isset($_GET['action'])) {
 //-- List DataTables --\\
 //---------------------\\
 
-if(@$_GET['action'] == "listtables"){
+if(@$_GET['action'] == "liststocktables"){
 		$WHERE = "";
 	$result = mysqli_query($con, "SELECT * FROM Stock LEFT JOIN Printers ON Stock.PID=Printers.PID $WHERE");
 	while($row = mysqli_fetch_array($result))
