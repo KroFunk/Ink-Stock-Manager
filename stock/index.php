@@ -15,14 +15,36 @@ require "../config/config.php";
 <script>
 window.onload = function PopulateData() {   
 
-//Grab data
-var obj = JSON.parse('<?php echo $Location; ?>/api/v1/list/list.php?action=liststocktables');
 
-// Grab Table
+
+
+
+
+}
+
+var xmlhttp = new XMLHttpRequest();
+var url = "<?php echo $Location; ?>/api/v1/list/list.php?action=liststocktables";
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArr = JSON.parse(xmlhttp.responseText);
+        myFunction(myArr);
+        //console.debug(myArr);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+    
+function myFunction(arr) {
+var out = "";
+var i;
+var x;
 var table = document.getElementById("displaydata");
+for(i = 0; i < arr.data.length; i++) {
+x = i + 1;
 
 // Create an empty <tr> element and add it to the 1st position of the table:
-var row = table.insertRow(1);
+var row = table.insertRow(x);
 
 // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
 var cell1 = row.insertCell(0);
@@ -37,22 +59,20 @@ var cell9 = row.insertCell(8);
 var cell10 = row.insertCell(9);
 var cell11 = row.insertCell(10);
 
-
 // Add some text to the new cells:
-cell1.innerHTML = obj.data[0];
-cell2.innerHTML = "NEW CELL2";
-cell3.innerHTML = "NEW CELL1";
-cell4.innerHTML = "NEW CELL2";
-cell5.innerHTML = "NEW CELL1";
-cell6.innerHTML = "NEW CELL2";
-cell7.innerHTML = "NEW CELL1";
-cell8.innerHTML = "NEW CELL2";
-cell9.innerHTML = "NEW CELL1";
-cell10.innerHTML = "NEW CELL2";
-cell11.innerHTML = "NEW CELL1";
-
+cell1.innerHTML = arr.data[i][0];
+cell2.innerHTML = arr.data[i][1];
+cell3.innerHTML = arr.data[i][2];
+cell4.innerHTML = arr.data[i][3];
+cell5.innerHTML = arr.data[i][4];
+cell6.innerHTML = arr.data[i][5];
+cell7.innerHTML = arr.data[i][6];
+cell8.innerHTML = arr.data[i][7];
+cell9.innerHTML = arr.data[i][8];
+cell10.innerHTML = arr.data[i][9];
+cell11.innerHTML = arr.data[i][10];
+    }
 }
-    		        
 </script>
 </head>
 <body style="margin:0px; padding:0px;">
