@@ -38,13 +38,22 @@ xmlhttp.send();
 function myFunction(arr) {
 var out = "";
 var i;
-var x;
+var x = 1;
+var LastPrinter;
+var Rows;
 var table = document.getElementById("displaydata");
 for(i = 0; i < arr.data.length; i++) {
-x = i + 1;
+Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
+
+if (LastPrinter != arr.data[i][0]){
+var row = table.insertRow(Rows - 1);
+var cell1 = row.insertCell(0);
+cell1.innerHTML = arr.data[i][0];
+Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
+}
 
 // Create an empty <tr> element and add it to the 1st position of the table:
-var row = table.insertRow(x);
+var row = table.insertRow(Rows - 1);
 
 // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
 var cell1 = row.insertCell(0);
@@ -57,20 +66,22 @@ var cell7 = row.insertCell(6);
 var cell8 = row.insertCell(7);
 var cell9 = row.insertCell(8);
 var cell10 = row.insertCell(9);
-var cell11 = row.insertCell(10);
+//var cell11 = row.insertCell(10);
 
 // Add some text to the new cells:
-cell1.innerHTML = arr.data[i][0];
-cell2.innerHTML = arr.data[i][1];
-cell3.innerHTML = arr.data[i][2];
-cell4.innerHTML = arr.data[i][3];
-cell5.innerHTML = arr.data[i][4];
-cell6.innerHTML = arr.data[i][5];
-cell7.innerHTML = arr.data[i][6];
-cell8.innerHTML = arr.data[i][7];
-cell9.innerHTML = arr.data[i][8];
-cell10.innerHTML = arr.data[i][9];
-cell11.innerHTML = arr.data[i][10];
+cell1.innerHTML = arr.data[i][1];
+cell2.innerHTML = arr.data[i][2];
+cell3.innerHTML = arr.data[i][3];
+cell4.innerHTML = arr.data[i][4];
+cell5.innerHTML = arr.data[i][5];
+cell6.innerHTML = arr.data[i][6];
+cell7.innerHTML = arr.data[i][7];
+cell8.innerHTML = arr.data[i][8];
+cell9.innerHTML = arr.data[i][9];
+cell10.innerHTML = arr.data[i][10];
+
+LastPrinter = arr.data[i][0];
+
     }
 }
 </script>
@@ -108,7 +119,7 @@ Server message would go here!
 <div class='dataScreenOptimised'>
 <table id="displaydata" class="display" cellpadding="5" celspacing="0" width="100%" style="width:100%;">
 <thead>
-<tr style='background-color:#666; color:#eee;'><td>Printer</td><td style="width:35%;">Ink Name</td><td width="100px">Price</td><td width="120px">Stock</td><td width="100px">Value</td><td width="65px"><center>On Order</center><td width="45px">Order</td><td></td><td width="40px"><center>Edit</center></td></td><td width="60px"><center>History</center></td><td width="55px">Update</td></tr>
+<tr style='background-color:#666; color:#eee;'><td style="width:35%;">Ink Name</td><td width="100px">Price</td><td width="120px">Stock</td><td width="100px">Value</td><td width="65px"><center>On Order</center><td width="45px">Order</td><td></td><td width="40px"><center>Edit</center></td></td><td width="60px"><center>History</center></td><td width="55px">Update</td></tr>
 </thead>
 
 <tfoot>
