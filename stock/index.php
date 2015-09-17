@@ -47,13 +47,18 @@ Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
 
 if (LastPrinter != arr.data[i][0]){
 var row = table.insertRow(Rows - 1);
+row.className = "group";
 var cell1 = row.insertCell(0);
 cell1.innerHTML = arr.data[i][0];
+cell1.colSpan = 10;
+
 Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
 }
 
 // Create an empty <tr> element and add it to the 1st position of the table:
 var row = table.insertRow(Rows - 1);
+
+row.id = (Rows - 1);
 
 // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
 var cell1 = row.insertCell(0);
