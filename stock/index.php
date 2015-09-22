@@ -40,12 +40,14 @@ var odds = 0;
 var x = 1;
 var LastPrinter;
 var Rows;
+var RowCount = 0;
 var table = document.getElementById("displaydata");
 for(i = 0; i < arr.data.length; i++) {
 Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
 if (LastPrinter != arr.data[i][0]){
 var row = table.insertRow(Rows - 1);
-row.id = i;
+row.id = RowCount;
+RowCount++;
 row.className = "group";
 var cell1 = row.insertCell(0);
 cell1.innerHTML = arr.data[i][0];
@@ -56,8 +58,9 @@ odds = 0;
 
 // Create an empty <tr> element and add it to the 1st position of the table:
 var row = table.insertRow(Rows - 1);
-row.id = i;
-row.id = (Rows - 1);
+row.id = RowCount;
+RowCount++;
+//row.id = (Rows - 1);
 
 if (isOdd(odds) == 1) {
 row.className += "odd";
@@ -96,15 +99,18 @@ cell10.innerHTML = arr.data[i][10];
 LastPrinter = arr.data[i][0];
 
     } 
-}
-
-//find length of table
-Rows = document.getElementById('displaydata').getElementsByTagName("tr").length;
-
+    
+    
 //loop the table, all rows should have an id. //demo 
-for(i = 0; i < rows.length; i++) {
-document.getElementById(i).className = "green";
+for(i = 0; i < (document.getElementById('displaydata').getElementsByTagName("tr").length - 2); i++) {
+if (document.getElementById(i).className != "group") {
+document.getElementById(i).onclick = function(){highlightRow(this.rowIndex - 1);};
 }
+}
+    
+}
+
+
 
 </script>
 </head>
