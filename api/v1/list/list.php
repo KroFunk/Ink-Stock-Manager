@@ -15,21 +15,35 @@ if(@$_GET['action'] == "liststocktables"){
 		$WHERE = "";
 	$result = mysqli_query($con, "SELECT * FROM Stock LEFT JOIN Printers ON Stock.PID=Printers.PID $WHERE");
 	while($row = mysqli_fetch_array($result))
-	{    
-		$Response['data'][] = array( 
-									 $row['PrinterMake'] . " " . $row['PrinterModel'] . " (" . $row['Type'] . ")",
-									 $row['InkName'],
-									 '&pound;' . number_format($row['Price'], 2, '.', ''),
-									 $row['Stock'] . " (ideal: " . $row['StockDefault'] . ")",
-									 '&pound;' . ((number_format($row['Price'], 2, '.', '')) * $row['Stock']),
-									 $row['OnOrder'],
-									 '<a href="javascript:popout(' . $row['OrderURL'] . ')"><img src="../icns/order.png"></a>',
-									 " ", 
-									 '<a href="javascript:openwrapper(' . "'editstock.php?index=" . $row['IID'] . "','920','320'" . ')"><img src="../icns/edit.png"></a>',
-									 '<a href="javascript:openwrapper(' . "'auditview.php?index=" . $row['InkName'] . "','920','400'" . ')"><img src="../icns/audit.png"></a>',
-									 '<a href="javascript:openwrapper(' . "'addstock.php?index=" . $row['IID'] . "','400','240'" . ')"><img src="../icns/plus.png"></a>' . 
-									 '<a href="javascript:openwrapper(' . "'removestock.php?index=" . $row['IID'] . "','400','240'" . ')"><img src="../icns/minus.png"></a>'
-									);    
+	{   
+	$Response['data'][] = array( "IID" => $row['IID'], 
+									 "InkName" => $row['InkName'],
+									 "Price" => number_format($row['Price'], 2, '.', ''),
+									 "StockWarning" => $row['StockWarning'],
+									 "StockDefault" => $row['StockDefault'],
+									 "Stock" => $row['Stock'],
+									 "ProductCode" => $row['ProductCode'],
+                                     "Description" => $row['Description'],
+									 "OnOrder" => $row['OnOrder'],
+									 "OrderURL" => $row['OrderURL'],
+									 "UPC" => $row['UPC'],
+									 "PID" => $row['PID'],
+									 "Printer" => $row['PrinterMake'] . " " . $row['PrinterModel']
+									);  
+	//	$Response['data'][] = array( 
+	//								 $row['PrinterMake'] . " " . $row['PrinterModel'] . " (" . $row['Type'] . ")",
+	//								 $row['InkName'],
+	//								 '&pound;' . number_format($row['Price'], 2, '.', ''),
+	//								 $row['Stock'] . " (ideal: " . $row['StockDefault'] . ")",
+	//								 '&pound;' . ((number_format($row['Price'], 2, '.', '')) * $row['Stock']),
+	//								 $row['OnOrder'],
+	//								 '<a href="javascript:popout(' . $row['OrderURL'] . ')"><img src="../icns/order.png"></a>',
+	//								 " ", 
+	//								 '<a href="javascript:openwrapper(' . "'editstock.php?index=" . $row['IID'] . "','920','320'" . ')"><img src="../icns/edit.png"></a>',
+	//								 '<a href="javascript:openwrapper(' . "'auditview.php?index=" . $row['InkName'] . "','920','400'" . ')"><img src="../icns/audit.png"></a>',
+	//								 '<a href="javascript:openwrapper(' . "'addstock.php?index=" . $row['IID'] . "','400','240'" . ')"><img src="../icns/plus.png"></a>' . 
+	//								 '<a href="javascript:openwrapper(' . "'removestock.php?index=" . $row['IID'] . "','400','240'" . ')"><img src="../icns/minus.png"></a>'
+	//								);    
 	}
 	$Response['response'][] = array( "request" => "listtables", "status" => "success");
 }

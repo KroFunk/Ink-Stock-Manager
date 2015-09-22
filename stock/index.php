@@ -33,6 +33,28 @@ xmlhttp.send();
 
 function isOdd(x) { return x & 1; };
 
+function Colouring(Stock, Ideal, OnOrder) {
+var Colour;
+if (Stock < Ideal) {
+if (OnOrder > 0) {
+var Colour = "rgb(248, 216, 4);";
+}
+else {
+var Colour = "rgb(247, 91, 104);";
+}
+}
+else if (OnOrder > 0) {
+var Colour = "rgb(18, 187, 5);";
+}
+else {
+//Fat Nothing
+}
+console.log(Stock);
+console.log(Ideal);
+console.log(OnOrder);
+return Colour;
+}
+
 function Populate(arr) {
 var out = "";
 var i;
@@ -44,13 +66,13 @@ var RowCount = 0;
 var table = document.getElementById("displaydata");
 for(i = 0; i < arr.data.length; i++) {
 Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
-if (LastPrinter != arr.data[i][0]){
+if (LastPrinter != arr.data[i]['Printer']){
 var row = table.insertRow(Rows - 1);
 row.id = RowCount;
 RowCount++;
 row.className = "group";
 var cell1 = row.insertCell(0);
-cell1.innerHTML = arr.data[i][0];
+cell1.innerHTML = arr.data[i]['Printer'];
 cell1.colSpan = 10;
 Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
 odds = 0;
@@ -58,9 +80,9 @@ odds = 0;
 
 // Create an empty <tr> element and add it to the 1st position of the table:
 var row = table.insertRow(Rows - 1);
+row.style.backgroundColor = Colouring(arr.data[i]['Stock'], arr.data[i]['StockDefault'], arr.data[i]['OnOrder']);
 row.id = RowCount;
 RowCount++;
-//row.id = (Rows - 1);
 
 if (isOdd(odds) == 1) {
 row.className += "odd";
@@ -85,18 +107,18 @@ var cell10 = row.insertCell(9);
 //var cell11 = row.insertCell(10);
 
 // Add some text to the new cells:
-cell1.innerHTML = arr.data[i][1];
-cell2.innerHTML = arr.data[i][2];
-cell3.innerHTML = arr.data[i][3];
-cell4.innerHTML = arr.data[i][4];
-cell5.innerHTML = arr.data[i][5];
+cell1.innerHTML = arr.data[i]['InkName'];
+cell2.innerHTML = arr.data[i]['Price'];
+cell3.innerHTML = arr.data[i]['Stock'];
+cell4.innerHTML = "<?php echo $Currency ?>" + (arr.data[i]['Price'] * arr.data[i]['Stock']).toFixed(2);
+cell5.innerHTML = arr.data[i]['OnOrder'];
 cell6.innerHTML = arr.data[i][6];
 cell7.innerHTML = arr.data[i][7];
 cell8.innerHTML = arr.data[i][8];
 cell9.innerHTML = arr.data[i][9];
 cell10.innerHTML = arr.data[i][10];
 
-LastPrinter = arr.data[i][0];
+LastPrinter = arr.data[i]['Printer'];
 
     } 
     
