@@ -1,6 +1,6 @@
 <?PHP
 
-require "../config/config.php";
+require "config/config.php";
 ?>
 <HTML>
 <head>

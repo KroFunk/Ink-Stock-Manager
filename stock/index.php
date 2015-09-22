@@ -34,31 +34,41 @@ xmlhttp.onreadystatechange = function() {
 }
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
-    
+
+function isOdd(x) { return x & 1; };
+
 function myFunction(arr) {
 var out = "";
 var i;
+var odds = 0;
 var x = 1;
 var LastPrinter;
 var Rows;
 var table = document.getElementById("displaydata");
 for(i = 0; i < arr.data.length; i++) {
 Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
-
 if (LastPrinter != arr.data[i][0]){
 var row = table.insertRow(Rows - 1);
 row.className = "group";
 var cell1 = row.insertCell(0);
 cell1.innerHTML = arr.data[i][0];
 cell1.colSpan = 10;
-
 Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
+odds = 0;
 }
 
 // Create an empty <tr> element and add it to the 1st position of the table:
 var row = table.insertRow(Rows - 1);
-
+row.id = i;
 row.id = (Rows - 1);
+
+if (isOdd(odds) == 1) {
+row.className += "odd";
+}
+else {
+row.className += "even";
+}
+odds++;
 
 // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
 var cell1 = row.insertCell(0);
