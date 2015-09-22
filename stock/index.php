@@ -9,15 +9,11 @@ require "../config/config.php";
 <link href='../admin.css' rel='stylesheet' type='text/css'>
 <link href='../demo_table.css' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="../incs/robins.iframe.wrapper.js"></script>
-<script type="text/javascript" src="../incs/jquery.min.js"></script>
+<!--<script type="text/javascript" src="../incs/jquery.min.js"></script>-->
 
 
 <script>
 window.onload = function PopulateData() {   
-
-
-
-
 
 
 }
@@ -28,7 +24,7 @@ var url = "<?php echo $Location; ?>/api/v1/list/list.php?action=liststocktables"
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         var myArr = JSON.parse(xmlhttp.responseText);
-        myFunction(myArr);
+        Populate(myArr);
         //console.debug(myArr);
     }
 }
@@ -37,7 +33,7 @@ xmlhttp.send();
 
 function isOdd(x) { return x & 1; };
 
-function myFunction(arr) {
+function Populate(arr) {
 var out = "";
 var i;
 var odds = 0;
@@ -49,6 +45,7 @@ for(i = 0; i < arr.data.length; i++) {
 Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
 if (LastPrinter != arr.data[i][0]){
 var row = table.insertRow(Rows - 1);
+row.id = i;
 row.className = "group";
 var cell1 = row.insertCell(0);
 cell1.innerHTML = arr.data[i][0];
@@ -69,6 +66,7 @@ else {
 row.className += "even";
 }
 odds++;
+
 
 // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
 var cell1 = row.insertCell(0);
@@ -97,8 +95,17 @@ cell10.innerHTML = arr.data[i][10];
 
 LastPrinter = arr.data[i][0];
 
-    }
+    } 
 }
+
+//find length of table
+Rows = document.getElementById('displaydata').getElementsByTagName("tr").length;
+
+//loop the table, all rows should have an id. //demo 
+for(i = 0; i < rows.length; i++) {
+document.getElementById(i).className = "green";
+}
+
 </script>
 </head>
 <body style="margin:0px; padding:0px;">
