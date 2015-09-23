@@ -301,15 +301,21 @@ z-index: 999999;
 }
 
 #grey {
-background:#000; 
-width:2000; 
-height:2000; 
 position:fixed; 
-left:-5; 
-top:-5; 
+left:-5%; 
+top:-5%; 
 opacity:0.4; 
+background:#000; 
+width:110%; 
+height:110%; 
 }
 .centre {
 margin:auto 0;
 text-align:center;
+}
+.odd {
+background-color:#eee;
+}
+.even {
+
 }

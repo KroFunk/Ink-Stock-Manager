@@ -7,7 +7,7 @@ require "../config/config.php";
 <title>Stock Manager | Admin | &copy; Robin Wright 2014</title>
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,100' rel='stylesheet' type='text/css'>
 <link href='../admin.css' rel='stylesheet' type='text/css'>
-<link href='../demo_table.css' rel='stylesheet' type='text/css'>
+<!--<link href='../demo_table.css' rel='stylesheet' type='text/css'>-->
 <script type="text/javascript" src="../incs/robins.iframe.wrapper.js"></script>
 <script type="text/javascript" src="../incs/jquery.min.js"></script>
 
@@ -149,6 +149,7 @@ document.getElementById('SubHeader').innerHTML = TotalProducts + ' products, ' +
 </script>
 </head>
 <body style="margin:0px; padding:0px;">
+
 <img src="../incs/blur.jpg" class="bg" />
 
 <div class="tablescroll dataScreenOptimised" id="tablescroll" style="display:none;">
@@ -185,7 +186,7 @@ Server message would go here!
 </thead>
 
 <tfoot>
-<tr><td colspan="4" style="text-align:right" rowspan="1">Showing:</td><td rowspan="1" colspan="4" style="text-align:left;" >Loading</td></tr>
+<tr><td colspan="4" style="text-align:right" rowspan="1"></td><td rowspan="1" colspan="4" style="text-align:left;" ></td></tr>
 </tfoot>
 </table>
 
@@ -213,7 +214,6 @@ mysqli_close($con);
 </div>
 
 
-
 <!--
 ###########################################################################
 ######################### Iframe Section  Start ###########################
@@ -221,7 +221,7 @@ mysqli_close($con);
 -->
 
 <!-- Grey out background -->
-<div id="grey" style="display:none;" onclick="closewrapper();">&nbsp;</div>
+<div id='grey' style="display: none;" onclick="closewrapper();">&nbsp;</div>
 
 <!-- The white box that the window will reside in -->
 <div id="iframewrapper" style="width: 750px; height: 230px; margin-left: -375px; margin-top: -95px; display: none;">
@@ -243,6 +243,7 @@ mysqli_close($con);
 ########################## Iframe Section  End ############################
 ###########################################################################
 -->
+
      
 </body>
 </HTML>

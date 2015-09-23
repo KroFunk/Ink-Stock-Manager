@@ -1,7 +1,7 @@
 function openwrapper(url, x, y){
 // Show popup elements
-document.getElementById('iframewrapper').style.display='block'; 
 document.getElementById('grey').style.display='block';
+document.getElementById('iframewrapper').style.display='block'; 
 
 // Resize elements
 document.getElementById('iframewrapper').style.width=x + "px";
