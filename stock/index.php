@@ -116,7 +116,7 @@ cell6.innerHTML = '<div class="centre"><a href="javascript:popout(' + arr.data[i
 //cell7.innerHTML = //Spacing Cell
 cell8.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'editstock.php?index=" + arr.data[i]['IID'] + "','920','320'" + ')"><img src="../icns/edit.png"></a></div>';
 cell9.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'auditview.php?index=" + arr.data[i]['InkName'] + "','920','320'" + ')"><img src="../icns/audit.png"></a></div>';
-cell10.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'addstock.php?index=" + arr.data[i]['IID'] + "','920','320'" + ')"><img src="../icns/plus.png"></a>&nbsp;' + '<a href="javascript:openwrapper(' + "'removestock.php?index=" + arr.data[i]['IID'] + "','920','320'" + ')"><img src="../icns/minus.png"></a></div>';
+cell10.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'addstock.php?index=" + arr.data[i]['IID'] + "','920','320'" + ')"><img src="../icns/plus.png"></a>&nbsp;' + '&nbsp;<a href="javascript:openwrapper(' + "'removestock.php?index=" + arr.data[i]['IID'] + "','920','320'" + ')"><img src="../icns/minus.png"></a></div>';
 
 
 TotalStock = (parseInt(TotalStock) + parseInt(arr.data[i]['Stock']));
