@@ -9,7 +9,7 @@ require "../config/config.php";
 <link href='../admin.css' rel='stylesheet' type='text/css'>
 <link href='../demo_table.css' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="../incs/robins.iframe.wrapper.js"></script>
-<!--<script type="text/javascript" src="../incs/jquery.min.js"></script>-->
+<script type="text/javascript" src="../incs/jquery.min.js"></script>
 
 
 <script>
@@ -34,24 +34,20 @@ xmlhttp.send();
 function isOdd(x) { return x & 1; };
 
 function Colouring(Stock, Ideal, OnOrder) {
-var Colour;
 if (Stock < Ideal) {
 if (OnOrder > 0) {
-var Colour = "rgb(248, 216, 4);";
+var Colour = "rgb(248, 216, 4)";
 }
 else {
-var Colour = "rgb(247, 91, 104);";
+var Colour = "rgb(247, 91, 104)";
 }
 }
 else if (OnOrder > 0) {
-var Colour = "rgb(18, 187, 5);";
+var Colour = "rgb(18, 187, 5)";
 }
 else {
-//Fat Nothing
+var Colour = "";
 }
-console.log(Stock);
-console.log(Ideal);
-console.log(OnOrder);
 return Colour;
 }
 
@@ -63,6 +59,10 @@ var x = 1;
 var LastPrinter;
 var Rows;
 var RowCount = 0;
+var TotalStock = 0;
+var TotalProducts = 0;
+var TotalValue = 0;
+var TotalOnOrder = 0;
 var table = document.getElementById("displaydata");
 for(i = 0; i < arr.data.length; i++) {
 Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
@@ -112,22 +112,34 @@ cell2.innerHTML = arr.data[i]['Price'];
 cell3.innerHTML = arr.data[i]['Stock'];
 cell4.innerHTML = "<?php echo $Currency ?>" + (arr.data[i]['Price'] * arr.data[i]['Stock']).toFixed(2);
 cell5.innerHTML = arr.data[i]['OnOrder'];
-cell6.innerHTML = arr.data[i][6];
-cell7.innerHTML = arr.data[i][7];
-cell8.innerHTML = arr.data[i][8];
-cell9.innerHTML = arr.data[i][9];
-cell10.innerHTML = arr.data[i][10];
+cell6.innerHTML = '<div class="centre"><a href="javascript:popout(' + arr.data[i]['OrderURL'] + ')"><img src="../icns/order.png"></a></div>';
+//cell7.innerHTML = //Spacing Cell
+cell8.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'editstock.php?index=" + arr.data[i]['IID'] + "','920','320'" + ')"><img src="../icns/edit.png"></a></div>';
+cell9.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'auditview.php?index=" + arr.data[i]['InkName'] + "','920','320'" + ')"><img src="../icns/audit.png"></a></div>';
+cell10.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'addstock.php?index=" + arr.data[i]['IID'] + "','920','320'" + ')"><img src="../icns/plus.png"></a>&nbsp;' + '<a href="javascript:openwrapper(' + "'removestock.php?index=" + arr.data[i]['IID'] + "','920','320'" + ')"><img src="../icns/minus.png"></a></div>';
+
+
+TotalStock = (parseInt(TotalStock) + parseInt(arr.data[i]['Stock']));
+TotalProducts++;
+TotalValue = TotalValue + (arr.data[i]['Price'] * arr.data[i]['Stock']);
+TotalOnOrder = TotalOnOrder + parseInt(arr.data[i]['OnOrder']);
+
 
 LastPrinter = arr.data[i]['Printer'];
 
     } 
     
     
-//loop the table, all rows should have an id. //demo 
+//Now that the table has been drawn, add the event listener for highlighting
 for(i = 0; i < (document.getElementById('displaydata').getElementsByTagName("tr").length - 2); i++) {
 if (document.getElementById(i).className != "group") {
 document.getElementById(i).onclick = function(){highlightRow(this.rowIndex - 1);};
 }
+
+//Update Subheader       
+document.getElementById('SubHeader').innerHTML = TotalProducts + ' products, ' + TotalStock + ' in stock with a value of &pound;' + TotalValue.toFixed(2) + '. ' + TotalOnOrder + ' On Order.';
+
+       
 }
     
 }
@@ -176,15 +188,6 @@ Server message would go here!
 <tr><td colspan="4" style="text-align:right" rowspan="1">Showing:</td><td rowspan="1" colspan="4" style="text-align:left;" >Loading</td></tr>
 </tfoot>
 </table>
-
-
-<?php //echo 
-"<script>
-window.onload = function(updatesubheader) {
-document.getElementById('SubHeader').innerHTML = 'ProductCount products, StockCount in stock with a value of &pound;StockValue. OrderCount On Order.';
-}
-</script>"
-?>
 
 
 

@@ -309,3 +309,7 @@ left:-5;
 top:-5; 
 opacity:0.4; 
 }
+.centre {
+margin:auto 0;
+text-align:center;
+}
