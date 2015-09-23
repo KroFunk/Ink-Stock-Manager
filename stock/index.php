@@ -146,6 +146,20 @@ document.getElementById('SubHeader').innerHTML = TotalProducts + ' products, ' +
 
 
 
+$(window).load(function(){
+var $rows = $('#displaydata tr');
+$('#search').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    
+    $rows.show().filter(function() {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+    }).hide();
+});
+});
+
+
+
 </script>
 </head>
 <body style="margin:0px; padding:0px;">
@@ -178,6 +192,8 @@ Server message would go here!
 <a class="function wrapper" href="javascript:openwrapper('scanin.php', '640', '420')"><img src="../icns/UPC.png"/> Scan Stock In</a>
 <a class="function wrapper" href="javascript:openwrapper('scanout.php', '640', '420')"><img src="../icns/UPC.png"/> Scan Stock Out</a>
 </div>
+
+<div style="float:right; width:200px; text-align:right;"><input type="text" id="search" placeholder="Type to search"></div>
 
 <div class='dataScreenOptimised'>
 <table id="displaydata" class="display" cellpadding="5" celspacing="0" width="100%" style="width:100%;">
