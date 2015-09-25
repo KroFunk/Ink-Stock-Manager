@@ -108,7 +108,7 @@ var cell10 = row.insertCell(9);
 
 // Add some text to the new cells:
 cell1.innerHTML = arr.data[i]['InkName'];
-cell2.innerHTML = arr.data[i]['Price'];
+cell2.innerHTML = "<?php echo $Currency ?>" + arr.data[i]['Price'];
 cell3.innerHTML = arr.data[i]['Stock'];
 cell4.innerHTML = "<?php echo $Currency ?>" + (arr.data[i]['Price'] * arr.data[i]['Stock']).toFixed(2);
 cell5.innerHTML = arr.data[i]['OnOrder'];
@@ -179,7 +179,7 @@ $('#search').keyup(function() {
 include "../incs/menu.inc";
 //echo "</div>";
 ?>
-<div class='HeaderBanner'>Stock <img src="../icns/question.png" /><div id="SubHeader" class='SubHeaderBanner'><b>Loading, please wait...</b></div></div>
+<div class='HeaderBanner'>Stock <a href="#" onclick="popup('<?php echo $Location; ?>/help/stock/')"><img src="../icns/question.png" /></a><div id="SubHeader" class='SubHeaderBanner'><b>Loading, please wait...</b></div></div>
 <div class="main" onmouseover="Hide('ReportsMenu')" >
 <!--
 Server message would go here!
@@ -188,7 +188,7 @@ Server message would go here!
 
 <div class='function'>
 <a class="function wrapper" href="javascript:openwrapper('addnew.php', '800', '220')"><img src="../icns/new.png"/> Add New Ink/Toner</a>
-<a class="function refresh" href="javascript:location.reload();"><img src="../icns/refresh.png"/> Refresh!</a>
+<a class="function refresh" href="javascript:PopulateData()"><img src="../icns/refresh.png"/> Refresh!</a>
 <a class="function wrapper" href="javascript:openwrapper('scanin.php', '640', '420')"><img src="../icns/UPC.png"/> Scan Stock In</a>
 <a class="function wrapper" href="javascript:openwrapper('scanout.php', '640', '420')"><img src="../icns/UPC.png"/> Scan Stock Out</a>
 </div>
