@@ -269,10 +269,10 @@ opacity:0;
 margin:0 auto;
 background:yellow;
 border:1px solid orange;
-position:absolute;
+position:fixed;
 text-align:center;
 width:200px;
-top:50%;
+top:10px;
 left:50%;
 margin-left:-100px;
 padding:10px;
@@ -312,6 +312,9 @@ height:110%;
 .centre {
 margin:auto 0;
 text-align:center;
+}
+.right {
+text-align:right;
 }
 .odd {
 background-color:#eee;

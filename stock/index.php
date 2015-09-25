@@ -13,11 +13,11 @@ require "../config/config.php";
 
 
 <script>
-window.onload = function PopulateData() {   
-
-
+window.onload = function InitialRefesh() {   
+PopulateData();
 }
 
+function PopulateData() {
 var xmlhttp = new XMLHttpRequest();
 var url = "<?php echo $Location; ?>/api/v1/list/list.php?action=liststocktables";
 
@@ -30,6 +30,7 @@ xmlhttp.onreadystatechange = function() {
 }
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
+}
 
 function isOdd(x) { return x & 1; };
 
@@ -52,6 +53,7 @@ return Colour;
 }
 
 function Populate(arr) {
+document.getElementById("InfoOptions").innerHTML="<div class='servermessage'>Refreshing data.</div>";
 var out = "";
 var i;
 var odds = 0;
@@ -108,10 +110,10 @@ var cell10 = row.insertCell(9);
 
 // Add some text to the new cells:
 cell1.innerHTML = arr.data[i]['InkName'];
-cell2.innerHTML = "<?php echo $Currency ?>" + arr.data[i]['Price'];
-cell3.innerHTML = arr.data[i]['Stock'];
-cell4.innerHTML = "<?php echo $Currency ?>" + (arr.data[i]['Price'] * arr.data[i]['Stock']).toFixed(2);
-cell5.innerHTML = arr.data[i]['OnOrder'];
+cell2.innerHTML = '<div class="right">' + "<?php echo $Currency ?>" + arr.data[i]['Price'] + '</div>';
+cell3.innerHTML = '<div class="right">' + arr.data[i]['Stock'] + '</div>';
+cell4.innerHTML = '<div class="right">' + "<?php echo $Currency ?>" + (arr.data[i]['Price'] * arr.data[i]['Stock']).toFixed(2) + '</div>';
+cell5.innerHTML = '<div class="right">' + arr.data[i]['OnOrder'] + '</div>';
 cell6.innerHTML = '<div class="centre"><a href="javascript:popout(' + arr.data[i]['OrderURL'] + ')"><img src="../icns/order.png"></a></div>';
 //cell7.innerHTML = //Spacing Cell
 cell8.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'editstock.php?index=" + arr.data[i]['IID'] + "','920','320'" + ')"><img src="../icns/edit.png"></a></div>';
@@ -130,7 +132,8 @@ LastPrinter = arr.data[i]['Printer'];
     } 
     
     
-//Now that the table has been drawn, add the event listener for highlighting
+/*//Now that the table has been drawn, add the event listener for highlighting
+var i = 0;
 for(i = 0; i < (document.getElementById('displaydata').getElementsByTagName("tr").length - 2); i++) {
 if (document.getElementById(i).className != "group") {
 document.getElementById(i).onclick = function(){highlightRow(this.rowIndex - 1);};
@@ -140,7 +143,7 @@ document.getElementById(i).onclick = function(){highlightRow(this.rowIndex - 1);
 document.getElementById('SubHeader').innerHTML = TotalProducts + ' products, ' + TotalStock + ' in stock with a value of &pound;' + TotalValue.toFixed(2) + '. ' + TotalOnOrder + ' On Order.';
 
        
-}
+}*/
     
 }
 
@@ -168,7 +171,7 @@ $('#search').keyup(function() {
 
 <div class="tablescroll dataScreenOptimised" id="tablescroll" style="display:none;">
 <table class="display" cellpadding="5" celspacing="0" width="100%" style="width:100%;">
-<tr style='background-color:#666; color:#eee;'><td style="width:35%;">Ink Name</td><td style="width:100px">Price</td><td style="width:120px">Stock</td><td style="width:100px">Value</td><td style="width:65px"><center>On Order</center><td style="width:45px">Order</td><td></td><td style="width:40px"><center>Edit</center></td></td><td style="width:60px"><center>History</center></td><td style="width:55px">Update</td></tr>
+<tr style='background-color:#666; color:#eee;'><td style="width:35%;">Ink Name</td><td style="width:100px">Price</td><td style="width:100px">Stock</td><td style="width:100px">Value</td><td style="width:65px"><center>On Order</center><td style="width:45px">Order</td><td></td><td style="width:40px"><center>Edit</center></td></td><td style="width:60px"><center>History</center></td><td style="width:55px">Update</td></tr>
 </table>
 </div>
 
@@ -188,7 +191,7 @@ Server message would go here!
 
 <div class='function'>
 <a class="function wrapper" href="javascript:openwrapper('addnew.php', '800', '220')"><img src="../icns/new.png"/> Add New Ink/Toner</a>
-<a class="function refresh" href="javascript:PopulateData()"><img src="../icns/refresh.png"/> Refresh!</a>
+<a class="function refresh" href="javascript:void(0);" onclick="PopulateData();"><img src="../icns/refresh.png"/> Refresh!</a>
 <a class="function wrapper" href="javascript:openwrapper('scanin.php', '640', '420')"><img src="../icns/UPC.png"/> Scan Stock In</a>
 <a class="function wrapper" href="javascript:openwrapper('scanout.php', '640', '420')"><img src="../icns/UPC.png"/> Scan Stock Out</a>
 </div>
@@ -198,7 +201,7 @@ Server message would go here!
 <div class='dataScreenOptimised'>
 <table id="displaydata" class="display" cellpadding="5" celspacing="0" width="100%" style="width:100%;">
 <thead>
-<tr style='background-color:#666; color:#eee;'><td style="width:35%;">Ink Name</td><td width="100px">Price</td><td width="120px">Stock</td><td width="100px">Value</td><td width="65px"><center>On Order</center><td width="45px">Order</td><td></td><td width="40px"><center>Edit</center></td></td><td width="60px"><center>History</center></td><td width="55px">Update</td></tr>
+<tr style='background-color:#666; color:#eee;'><td style="width:35%;">Ink Name</td><td width="100px">Price</td><td width="100px">Stock</td><td width="100px">Value</td><td width="65px"><center>On Order</center><td width="45px">Order</td><td></td><td width="40px"><center>Edit</center></td></td><td width="60px"><center>History</center></td><td width="55px">Update</td></tr>
 </thead>
 
 <tfoot>
@@ -229,6 +232,8 @@ mysqli_close($con);
 </div>
 </div>
 
+
+<div id="InfoOptions"></div>
 
 <!--
 ###########################################################################
