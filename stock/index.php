@@ -13,11 +13,10 @@ require "../config/config.php";
 
 
 <script>
-window.onload = function InitialRefesh() {   
-PopulateData();
-}
+
 
 function PopulateData() {
+
 var xmlhttp = new XMLHttpRequest();
 var url = "<?php echo $Location; ?>/api/v1/list/list.php?action=liststocktables";
 
@@ -53,6 +52,7 @@ return Colour;
 }
 
 function Populate(arr) {
+DeleteRows();
 document.getElementById("InfoOptions").innerHTML="<div class='servermessage'>Refreshing data.</div>";
 var out = "";
 var i;
@@ -131,23 +131,33 @@ LastPrinter = arr.data[i]['Printer'];
 
     } 
     
+//Update Subheader       
+document.getElementById('SubHeader').innerHTML = TotalProducts + ' products, ' + TotalStock + ' in stock with a value of &pound;' + TotalValue.toFixed(2) + '. ' + TotalOnOrder + ' On Order.'; 
+
     
-/*//Now that the table has been drawn, add the event listener for highlighting
+}
+
+function AddClicks() {
+//Now that the table has been drawn, add the event listener for highlighting
 var i = 0;
 for(i = 0; i < (document.getElementById('displaydata').getElementsByTagName("tr").length - 2); i++) {
 if (document.getElementById(i).className != "group") {
 document.getElementById(i).onclick = function(){highlightRow(this.rowIndex - 1);};
+}       
+}
 }
 
-//Update Subheader       
-document.getElementById('SubHeader').innerHTML = TotalProducts + ' products, ' + TotalStock + ' in stock with a value of &pound;' + TotalValue.toFixed(2) + '. ' + TotalOnOrder + ' On Order.';
+function DeleteRows() {
+//Delete all rows except 1st and last
+var i = 1;
+var b = document.getElementById('displaydata').getElementsByTagName("tr").length;
+for(i = 1; i < b; i++) {
 
+document.getElementById('displaydata').deleteRow(i);
+console.log('Deleting row ' + i);
        
-}*/
-    
 }
-
-
+}
 
 $(window).load(function(){
 var $rows = $('#displaydata tr');
@@ -161,7 +171,9 @@ $('#search').keyup(function() {
 });
 });
 
-
+window.onload = function InitialRefesh() {   
+PopulateData();
+}
 
 </script>
 </head>
@@ -203,7 +215,9 @@ Server message would go here!
 <thead>
 <tr style='background-color:#666; color:#eee;'><td style="width:35%;">Ink Name</td><td width="100px">Price</td><td width="100px">Stock</td><td width="100px">Value</td><td width="65px"><center>On Order</center><td width="45px">Order</td><td></td><td width="40px"><center>Edit</center></td></td><td width="60px"><center>History</center></td><td width="55px">Update</td></tr>
 </thead>
-
+<tbody>
+<tr><td colspan="10">No Data</td></tr>
+</tbody>
 <tfoot>
 <tr><td colspan="4" style="text-align:right" rowspan="1"></td><td rowspan="1" colspan="4" style="text-align:left;" ></td></tr>
 </tfoot>
