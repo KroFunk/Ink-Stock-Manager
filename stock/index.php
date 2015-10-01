@@ -149,14 +149,13 @@ document.getElementById(i).onclick = function(){highlightRow(this.rowIndex - 1);
 
 function DeleteRows() {
 //Delete all rows except 1st and last
-var i = 1;
-var b = document.getElementById('displaydata').getElementsByTagName("tr").length;
-for(i = 1; i < b; i++) {
-
-document.getElementById('displaydata').deleteRow(i);
-console.log('Deleting row ' + i);
-       
-}
+//var i = 1;
+//var b = document.getElementById('displaydata').getElementsByTagName("tr").length;
+//for(i = 1; i < b; i++) {
+//document.getElementById('displaydata').deleteRow(i);
+//console.log('Deleting row ' + i);  
+//}
+$("#displaydata tbody tr").remove(); 
 }
 
 $(window).load(function(){
