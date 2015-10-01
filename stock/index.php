@@ -159,7 +159,7 @@ $("#displaydata tbody tr").remove();
 }
 
 $(window).load(function(){
-var $rows = $('#displaydata tr');
+var $rows = $("#displaydata tbody tr");
 $('#search').keyup(function() {
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
     
@@ -262,7 +262,7 @@ mysqli_close($con);
 
 <!-- The 'X' button -->
 <a href="javascript:void(0);" onclick="closewrapper();">
-<img id="iframeX" src="../icns/X.png" style="position:relative; top:-10px; left:735px; border:0 none;">
+<img id="iframeX" src="../icns/X.png" style="position:relative; top:-5px; left:735px; border:0 none;">
 </a>
 
 <!-- Actual iFrame container -->

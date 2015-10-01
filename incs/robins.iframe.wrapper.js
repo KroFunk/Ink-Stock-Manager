@@ -11,7 +11,7 @@ document.getElementById('Iframe').style.height=(y - 10) + "px";
 // Position elements
 document.getElementById('iframewrapper').style.marginLeft="-" + (x / 2) + "px";
 document.getElementById('iframewrapper').style.marginTop="-" + (y / 2) + "px";
-document.getElementById('iframeX').style.left=(x - 15) + "px";
+document.getElementById('iframeX').style.left=(x - 25) + "px";
 
 // Stop scroll event 'bubble'
  document.getElementById('Iframe').src = url;
@@ -20,10 +20,11 @@ ev.preventDefault();
 });
 }
 
-function closewrapper() { //will close the window without refreshing the page. 
+function closewrapper() { //will close the window without refreshing the page. //will reload table data
 // hide popup elements
 document.getElementById('iframewrapper').style.display='none'; 
 document.getElementById('grey').style.display='none';
+PopulateData();
 }
 
 function reloadparent() { //reloads parent window, for use from wrapper

@@ -147,7 +147,7 @@ mysqli_close($con);
 
 
 <div id="grey" style="background:#000; width:2000; height:2000; position:fixed; left:-5; top:-5; opacity:0.3; display:none;">&nbsp;</div>
-<div id="iframewrapper" style="background-color: rgb(255, 255, 255); box-shadow: rgb(0, 0, 0) 0px 0px 20px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; position: fixed; z-index: 999999; width: 1000px; height: 500px; left: 50%; margin-left: -500px; top: 50%; margin-top: -250px; display: none; background-position: initial initial; background-repeat: initial initial;"><a href="javascript:void(0);" onclick="javascript:location.reload();"><img src="../icns/X.png" style="position:relative; top:-10px; left:990px; border:0 none;"></a>
+<div id="iframewrapper" style="background-color: rgb(255, 255, 255); box-shadow: rgb(0, 0, 0) 0px 0px 20px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; position: fixed; z-index: 999999; width: 1000px; height: 500px; left: 50%; margin-left: -500px; top: 50%; margin-top: -250px; display: none; background-position: initial initial; background-repeat: initial initial;"><a href="javascript:void(0);" onclick="javascript:location.reload();"><img src="../icns/X.png" style="position:relative; top:-5px; left:990px; border:0 none;"></a>
 
 <div style="clear:both; padding:20px; padding-left:0px; margin-top:-50px;">
 

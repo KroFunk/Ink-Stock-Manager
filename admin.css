@@ -156,7 +156,7 @@ text-align:right;
 background:#333;
 position:fixed;
 top:0px;
-box-shadow:#000 0px 0px 10px;
+/*box-shadow:#000 0px 0px 10px;*/
 }
 #menu a:link {
 text-decoration:none;
@@ -291,13 +291,17 @@ padding:10px;
 }
 
 #iframewrapper {
-background-color: rgb(255, 255, 255); 
-box-shadow: rgb(0, 0, 0) 0px 0px 20px; 
-border-radius: 10px; 
+background-color: rgba(255, 255, 255, 0); 
+border-radius: 0px; 
+padding:0px;
 position: fixed; 
 left: 50%;
 top: 50%;
 z-index: 999999; 
+
+}
+#iframeX {
+
 }
 
 #grey {

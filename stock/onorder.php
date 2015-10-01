@@ -7,7 +7,7 @@ $index = $_GET['index'];
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<link href='adminwhite.css' rel='stylesheet' type='text/css'>
+<link href='../adminwhite.css' rel='stylesheet' type='text/css'>
 <title>Add Stock</title>
 </head>
 <body>

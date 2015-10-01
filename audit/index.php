@@ -279,7 +279,7 @@ mysqli_close($con);
 
 <!-- The 'X' button -->
 <a href="javascript:void(0);" onclick="closewrapper();">
-<img id="iframeX" src="../icns/X.png" style="position:relative; top:-10px; left:735px; border:0 none;">
+<img id="iframeX" src="../icns/X.png" style="position:relative; top:-5px; left:735px; border:0 none;">
 </a>
 
 <!-- Actual iFrame container -->

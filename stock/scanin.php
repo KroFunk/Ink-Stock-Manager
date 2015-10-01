@@ -6,10 +6,11 @@ require "../config/config.php";
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<link href='adminwhite.css' rel='stylesheet' type='text/css'>
+<link href='../adminwhite.css' rel='stylesheet' type='text/css'>
 <title>Scan Stock In</title>
 </head>
 <body>
+<div class="main">
 <center>
 <?PHP 
 if (isset($_POST['UPC'])){
@@ -91,5 +92,6 @@ while($row = mysqli_fetch_array($inks))
 mysqli_close($con);
 ?>
 </center>
+</div>
 </body>
 </html>
