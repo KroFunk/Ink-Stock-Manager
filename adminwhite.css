@@ -1,8 +1,16 @@
 body {
 	font-family:Roboto, sans-serif;
 	background-color:white;
+	padding:0px;
+	margin:0px;
 }
-
+input[type=text] {
+border:0px;
+border-bottom:2px solid #aaa;
+background-color:#ccc;
+padding:10px;
+outline:0px;
+}
 input[type=submit] {
 padding:5px;
 padding-top:7px;
@@ -120,6 +128,16 @@ margin-top:10px;
 -webkit-margin-after:0em;
 }
 h1 {
-	color:red;
+    display:block;
+    background:#666;
+	color:white;
+	margin:0px;
+	text-align:left;
+	color:#eee;
+font-weight:100;
+font-size:40px;
+padding:10px;
+margin-bottom:0px;
+vertical-align:middle;
 }
 

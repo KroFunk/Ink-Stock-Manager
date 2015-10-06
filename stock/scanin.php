@@ -48,26 +48,7 @@ $redirect .= "&offorder=0";
 else {
 ?>
 <h1>Scan barcode to add stock</h1>
-<form method="POST" action="">
-<input type="text" name="UPC" autofocus /><br/>
-<?php 
-if (isset($_GET['offorder']) && $_GET['offorder'] == 0){
-echo '<input type="checkbox" name="offorder" /> Deduct from "On Order"?';
-}
-else {
-echo '<input type="checkbox" name="offorder" checked /> Deduct from "On Order"?';
-}
-if (isset($_GET['auditlength'])){
-$AuditLength = $_GET['auditlength'];
-}
-else {
-$AuditLength = 0;
-}
-echo '<input type="hidden" name="auditlength" value="' . $AuditLength . '" />';
-?>
-</form>
-<br/>
-<table id="audit" class="display" cellpadding="5" celspacing="0" style="width:100%;">
+<table id="audit" class="display" cellpadding="5" cellspacing="0" style="width:100%;">
 <thead>
 <tr style='background-color:#666; color:#eee;'><td>Date Y-M-D</td><td>Time</td><td>Ink Name</td><td>Detail</td></tr>
 </thead>
@@ -86,6 +67,26 @@ while($row = mysqli_fetch_array($inks))
 ?>
 </tbody>
 </table>
+
+<form style="position:fixed; bottom:0px; left:0px; background-color:#ccc; border-top:1px solid #eee; padding-top:10px; padding-bottom:10px; width:100%; text-align:right;" method="POST" action="">
+<div style="float:left;padding:10px;"><?php 
+if (isset($_GET['offorder']) && $_GET['offorder'] == 0){
+echo '<input style="display:inline" type="checkbox" name="offorder" /> Deduct from "On Order"?';
+}
+else {
+echo '<input style="display:inline" type="checkbox" name="offorder" checked /> Deduct from "On Order"?';
+}
+if (isset($_GET['auditlength'])){
+$AuditLength = $_GET['auditlength'];
+}
+else {
+$AuditLength = 0;
+}
+echo '<input type="hidden" name="auditlength" value="' . $AuditLength . '" />';
+?></div>
+&nbsp;&nbsp;&nbsp;Scan: <input style="margin-right:10px;" type="text" name="UPC" autofocus />
+</form>
+
 
 <?PHP
 }
