@@ -47,13 +47,19 @@ $redirect .= "&offorder=0";
 }
 else {
 ?>
-<h1>Scan barcode to add stock</h1>
+<h1>Scan barcode to ADD stock</h1>
 <table id="audit" class="display" cellpadding="5" cellspacing="0" style="width:100%;">
 <thead>
 <tr style='background-color:#666; color:#eee;'><td>Date Y-M-D</td><td>Time</td><td>Ink Name</td><td>Detail</td></tr>
 </thead>
 <tbody>
 <?PHP
+if (isset($_GET['auditlength'])){
+$AuditLength = $_GET['auditlength'];
+}
+else {
+$AuditLength = 0;
+}
 $inks = mysqli_query($con, "SELECT * 
 FROM  `AuditTrail` 
 WHERE  `Detail` LIKE '%added%'
@@ -64,6 +70,7 @@ while($row = mysqli_fetch_array($inks))
   {
   echo "<tr><td>" . $row['Date'] . "</td><td>" . $row['Time'] . "</td><td>" . $row['InkName'] . "</td><td>" . $row['Detail'] . "</td></tr>";
   }
+
 ?>
 </tbody>
 </table>
@@ -76,12 +83,7 @@ echo '<input style="display:inline" type="checkbox" name="offorder" /> Deduct fr
 else {
 echo '<input style="display:inline" type="checkbox" name="offorder" checked /> Deduct from "On Order"?';
 }
-if (isset($_GET['auditlength'])){
-$AuditLength = $_GET['auditlength'];
-}
-else {
-$AuditLength = 0;
-}
+
 echo '<input type="hidden" name="auditlength" value="' . $AuditLength . '" />';
 ?></div>
 &nbsp;&nbsp;&nbsp;Scan: <input style="margin-right:10px;" type="text" name="UPC" autofocus />

@@ -10,6 +10,7 @@ require "../config/config.php";
 <title>Scan Stock In</title>
 </head>
 <body>
+<div class="main">
 <center>
 <?PHP 
 
@@ -75,26 +76,20 @@ echo '<input type="hidden" name="auditlength" value="' . $AuditLength . '" />';
 }
 else {
 ?>
-<h1>Scan barcode to remove stock</h1>
-<form method="POST" action="">
-<input type="text" name="UPC" autofocus />
-<?php
+<h1>Scan barcode to REMOVE stock</h1>
+
+<table id="audit" class="display" cellpadding="5" cellspacing="0" style="width:100%;">
+<thead>
+<tr style='background-color:#666; color:#eee;'><td>Date Y-M-D</td><td>Time</td><td>Ink Name</td><td>Detail</td></tr>
+</thead>
+<tbody>
+<?PHP
 if (isset($_GET['auditlength'])){
 $AuditLength = $_GET['auditlength'];
 }
 else {
 $AuditLength = 0;
 }
-echo '<input type="hidden" name="auditlength" value="' . $AuditLength . '" />';
-?>
-</form>
-<br/>
-<table id="audit" class="display" cellpadding="5" celspacing="0" style="width:100%;">
-<thead>
-<tr style='background-color:#666; color:#eee;'><td>Date Y-M-D</td><td>Time</td><td>Ink Name</td><td>Detail</td></tr>
-</thead>
-<tbody>
-<?PHP
 $inks = mysqli_query($con, "SELECT * 
 FROM  `AuditTrail` 
 WHERE  `Detail` LIKE '%removed%'
@@ -116,6 +111,21 @@ while($row = mysqli_fetch_array($inks))
 
 
 
+<form style="position:fixed; bottom:0px; left:0px; background-color:#ccc; border-top:1px solid #eee; padding-top:10px; padding-bottom:10px; width:100%; text-align:right;" method="POST" action="">
+
+&nbsp;&nbsp;&nbsp;Scan: <input style="margin-right:10px;" type="text" name="UPC" autofocus />
+<?php
+echo '<input type="hidden" name="auditlength" value="' . $AuditLength . '" />';
+?>
+</form>
+
+
+
+
+
+
+
+
 
 
 
@@ -125,5 +135,6 @@ while($row = mysqli_fetch_array($inks))
 mysqli_close($con);
 ?>
 </center>
+</div>
 </body>
 </html>
