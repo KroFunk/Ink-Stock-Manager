@@ -69,7 +69,7 @@ var table = document.getElementById("displaydata");
 for(i = 0; i < arr.data.length; i++) {
 Rows = document.getElementById("displaydata").getElementsByTagName("tr").length;
 if (LastPrinter != arr.data[i]['Printer']){
-var row = table.insertRow(Rows - 1);
+var row = table.insertRow(Rows - 0);
 row.id = RowCount;
 RowCount++;
 row.className = "group";
@@ -81,7 +81,7 @@ odds = 0;
 }
 
 // Create an empty <tr> element and add it to the 1st position of the table:
-var row = table.insertRow(Rows - 1);
+var row = table.insertRow(Rows);
 row.style.backgroundColor = Colouring(arr.data[i]['Stock'], arr.data[i]['StockDefault'], arr.data[i]['OnOrder']);
 row.id = RowCount;
 RowCount++;
@@ -149,13 +149,17 @@ document.getElementById(i).onclick = function(){highlightRow(this.rowIndex - 1);
 
 function DeleteRows() {
 //Delete all rows except 1st and last
-//var i = 1;
-//var b = document.getElementById('displaydata').getElementsByTagName("tr").length;
-//for(i = 1; i < b; i++) {
+var i = 0;
+var b = document.getElementById('displaydata').getElementsByTagName("tr").length - 1;
+console.log('There are '+b+' rows');
+for(i = 0; i < b; i++) {
 //document.getElementById('displaydata').deleteRow(i);
-//console.log('Deleting row ' + i);  
-//}
-$("#displaydata tbody tr").remove(); 
+var element = document.getElementById(i);
+element.parentNode.removeChild(element);
+console.log('Deleting row '+i);  
+}
+
+
 }
 
 $(window).load(function(){
@@ -214,12 +218,9 @@ Server message would go here!
 <thead>
 <tr style='background-color:#666; color:#eee;'><td style="width:35%;">Ink Name</td><td width="100px">Price</td><td width="100px">Stock</td><td width="100px">Value</td><td width="65px"><center>On Order</center><td width="45px">Order</td><td></td><td width="40px"><center>Edit</center></td></td><td width="60px"><center>History</center></td><td width="55px">Update</td></tr>
 </thead>
-<tbody>
-<tr><td colspan="10">No Data</td></tr>
+<tbody id="tbody">
+<tr id='0'><td colspan="10">No Data</td></tr>
 </tbody>
-<tfoot>
-<tr><td colspan="4" style="text-align:right" rowspan="1"></td><td rowspan="1" colspan="4" style="text-align:left;" ></td></tr>
-</tfoot>
 </table>
 
 
