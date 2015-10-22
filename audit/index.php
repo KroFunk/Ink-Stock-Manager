@@ -7,7 +7,7 @@ require "../config/config.php";
 <head>
 <title>Stock Manager | Audit | &copy; Robin Wright 2014</title>
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,100' rel='stylesheet' type='text/css'>
-<link href='../admin.css' rel='stylesheet' type='text/css'>
+<link href='../admin.css.php' rel='stylesheet' type='text/css'>
 <link href='../demo_table.css' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 function popout(url){
@@ -17,7 +17,7 @@ var popup=window.open(url,"Stock Manager Popup","width=700,height=650,scrollbars
 
 <script>
 function updatequery(){
-window.location.assign('/ink/audit/?fromdate=' + document.getElementById("fromdate").value + '&todate=' + document.getElementById("todate").value);
+window.location.assign('<?php echo $Location ?>/audit/?fromdate=' + document.getElementById("fromdate").value + '&todate=' + document.getElementById("todate").value);
 }
 </script>
 

@@ -229,7 +229,7 @@ margin-left:1px;
 padding-left:30px;
 width:100px;
 height:30px;
-background:url(/ink/icns/calendar2.jpg);
+background:url(<?php echo $Location ?>/icns/calendar2.jpg);
 background-repeat:no-repeat;
 background-position:left center;
 }
