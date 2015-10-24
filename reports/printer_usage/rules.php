@@ -18,7 +18,7 @@ $todate = date('Y') . '-' . date('m') . '-' . date('d');
 <head>
 <title>Stock Manager | Printer Usage Rules | &copy; Robin Wright 2014</title>
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,100' rel='stylesheet' type='text/css'>
-<link href='../../admin.css.php' rel='stylesheet' type='text/css'>
+<link href='../../admin.css' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 function popout(url){
 var popup=window.open(url,"Stock Manager Popup","width=700,height=650,scrollbars=1,resizable=1,addressbar=0")

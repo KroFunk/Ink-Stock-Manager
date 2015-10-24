@@ -13,7 +13,7 @@ $ProductCount = 0;
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
 
-<link href='../admin.css.php' rel='stylesheet' type='text/css'>
+<link href='../admin.css' rel='stylesheet' type='text/css'>
 <link href='../demo_table.css' rel='stylesheet' type='text/css'>
 
 <script type="text/javascript" src="../incs/jquery.min.js"></script>

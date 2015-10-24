@@ -6,7 +6,7 @@ require "../config/config.php";
 <head>
 <title>Stock Manager | Admin | &copy; Robin Wright 2014</title>
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,100' rel='stylesheet' type='text/css'>
-<link href='../admin.css.php' rel='stylesheet' type='text/css'>
+<link href='../admin.css' rel='stylesheet' type='text/css'>
 <!--<link href='../demo_table.css' rel='stylesheet' type='text/css'>-->
 <script type="text/javascript" src="../incs/robins.iframe.wrapper.js"></script>
 <script type="text/javascript" src="../incs/jquery.min.js"></script>
@@ -161,7 +161,7 @@ for(i = 0; i < b; i++) {
 //document.getElementById('displaydata').deleteRow(i);
 var element = document.getElementById(i);
 element.parentNode.removeChild(element);
-console.log('Deleting row '+i);  
+//console.log('Deleting row '+i);  
 }
 
 
