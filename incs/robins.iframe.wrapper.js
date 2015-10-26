@@ -22,6 +22,7 @@ ev.preventDefault();
 
 function closewrapper() { //will close the window without refreshing the page. //will reload table data
 // hide popup elements
+ document.getElementById('Iframe').src = 'about:blank';
 document.getElementById('iframewrapper').style.display='none'; 
 document.getElementById('grey').style.display='none';
 PopulateData();
