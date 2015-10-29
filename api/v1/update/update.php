@@ -6,6 +6,9 @@ $Response['operation'] = "update";
 $Response['response'] = array();
 if(isset($_POST['action'])){
 if($_SESSION['IsAdmin'] == 1) {
+$theDate = date('Y') . "-" . date('m') . "-" . date('d');
+$theTime = date('H') . ":" . date('i');
+
 if($_POST['action'] == "updatestock"){
 
      
@@ -40,10 +43,31 @@ if($_POST['action'] == "updatestock"){
      }
      
      $querystring = substr($PID . $inkname . $price . $stock . $stockwarning . $stockdefault . $orderurl . $onorder . $UPC, 0, -2);
+     
      $IID = $_POST['IID'];
      
+     mysqli_query($con, "UPDATE `$SQLDB`.`stock` SET " . $querystring . " WHERE `stock`.`IID` = $IID;") or die ('Unable to execute query. '. mysqli_error($con));
      
-     mysqli_query($con, "UPDATE `inkstock`.`stock` SET " . $querystring . " WHERE `stock`.`IID` = $IID;") or die ('Unable to execute query. '. mysqli_error($con));
+     $result = mysqli_query($con, "SELECT * FROM Stock LEFT JOIN Printers ON Stock.PID=Printers.PID  WHERE `stock`.`IID` = $IID") or die ('Unable to execute query. '. mysqli_error($con));
+     $row = mysqli_fetch_array($result);
+     $printer = $row['Printer'];
+	 $inkname = $row['InkName'];
+     mysqli_query($con,"INSERT INTO  `$SQLDB`.`AuditTrail` (
+`AID` ,
+`Date` ,
+`Time` ,
+`UserID` ,
+`Printer` ,
+`InkName` ,
+`Cost` ,
+`Department` ,
+`Detail` ,
+`Note`
+)
+VALUES (
+NULL,  '$theDate',  '$theTime', '$CUID', '$printer',  '$inkname',  '-',  '-',  'Stock record was updated',  '$querystring'
+);");
+     
      
      $Response['response'][] = array( "request" => "updatestock", "status" => "success");
 }
@@ -80,7 +104,7 @@ else if($_POST['action'] == "updateprinter"){
      $PID = $_POST['PID'];
      
      
-     mysqli_query($con, "UPDATE `inkstock`.`printers` SET " . $querystring . " WHERE `printers`.`PID` = $PID;") or die ('Unable to execute query. '. mysqli_error($con));
+     mysqli_query($con, "UPDATE `$SQLDB`.`printers` SET " . $querystring . " WHERE `printers`.`PID` = $PID;") or die ('Unable to execute query. '. mysqli_error($con));
      
      $Response['response'][] = array( "request" => "updateprinter", "status" => "success");
 }
@@ -115,7 +139,7 @@ if($_SESSION['IsAdmin'] == 1) {
      $UserID = $_POST['UserID'];
      
      
-     mysqli_query($con, "UPDATE `inkstock`.`users` SET " . $querystring . " WHERE `users`.`UserID` = $UserID;") or die ('Unable to execute query. '. mysqli_error($con));
+     mysqli_query($con, "UPDATE `$SQLDB`.`users` SET " . $querystring . " WHERE `users`.`UserID` = $UserID;") or die ('Unable to execute query. '. mysqli_error($con));
      
      $Response['response'][] = array( "request" => "updateuser", "status" => "success");
 }
@@ -143,7 +167,7 @@ else if($_POST['action'] == "updatelocation"){
      $DID = $_POST['DID'];
      
      
-     mysqli_query($con, "UPDATE `inkstock`.`departments` SET " . $querystring . " WHERE `departments`.`DID` = $DID;") or die ('Unable to execute query. '. mysqli_error($con));
+     mysqli_query($con, "UPDATE `$SQLDB`.`departments` SET " . $querystring . " WHERE `departments`.`DID` = $DID;") or die ('Unable to execute query. '. mysqli_error($con));
      
      $Response['response'][] = array( "request" => "updatelocation", "status" => "success");
 }
