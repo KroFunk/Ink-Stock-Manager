@@ -5,7 +5,8 @@ Transitioning to open source from a private and closed project.
 
 The project was neglected, currently requires a LOT of bug fixes.
 
-# Backstory
+Backstory
+=========
 Where I work, Ink and Toner stock levels were managed in a spreadsheet. 
 Apart from being wildly inaccurate at times, there were issues with not ordering 
 stock, not knowing what needed ordering, when toner had been taken...the list 
@@ -15,25 +16,25 @@ The core idea for Ink Stock Manager was to have a database that was fast and con
 The database would also be able to produce a series of 'reports' to reduce admin work at the end of 
 each year (how much cash was spent on x printer etc etc etc)
 
-# Features
-<ul>
-<li>Stock level monitoring</li>
-<li>Auditing</li>
-<li>Reporting</li>
-<li>API</li>
-<li>Purchase order assistant</li>
-</ul>
+Features
+========
+* Stock level monitoring
+* Auditing
+* Reporting
+* API
+* Purchase order assistant
 
-# ToDo
 
+ToDo
+====
 1. Bug Squashing!!!
 2. Continue migration to Ajax/API
 3. Get feature sprawl under control
 4. Documentation
 5. Automated/assisted installation
 
-# Installation
-
+Installation
+============
 Installation is currently not automated, please follow these instructions: 
 
 1. Unpack into web directory
