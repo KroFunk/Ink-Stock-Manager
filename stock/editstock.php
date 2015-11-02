@@ -44,11 +44,11 @@ function Populate(arr) {
 }
 </script>
 </head>
-<body style="background-color:#ccc;">
+<body>
 <div id="InfoOptions"></div>
 <h1 id='title'>Edit<?php echo $InkName; ?></h1>
 			
-	<table style='width:100%;margin-bottom:25px;' cellspacing='0' cellpadding='5'>
+	<table style='width:100%;margin-bottom:10px;' cellspacing='0' cellpadding='5'>
 	<thead>
 	<tr style="background-color:#666; color:#eee;">
 	<td>Ink Name</td><td>Price</td><td>Stock Warning</td><td>Stock Default</td>
@@ -61,7 +61,7 @@ function Populate(arr) {
 	</tbody>
 	</table>
 	
-	<table style='width:100%;margin-bottom:25px;' cellspacing='0' cellpadding='5'>
+	<table style='width:100%;margin-bottom:10px;' cellspacing='0' cellpadding='5'>
 	<thead>
 	<tr style="background-color:#666; color:#eee;">
 	<td>Product Code</td><td>Description</td><td>OrderURL</td><td>UPC</td>

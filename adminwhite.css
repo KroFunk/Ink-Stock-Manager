@@ -7,46 +7,59 @@ body {
 input[type=text] {
 border:0px;
 border-bottom:2px solid #aaa;
-background-color:#ccc;
+background-color:rgba(255,255,255,0);
 padding:10px;
 outline:0px;
 }
 input[type=submit] {
-padding:5px;
-padding-top:7px;
-padding-left:7px;
-padding-right:7px;
-margin-left:5px;
-margin-right:5px;
-color:#fff;
-font-size:14px;
-background-color:#297acc;
-border:1px solid #103152;
-border-bottom:3px solid #103152;
-border-radius:3px;
+font-size:18px;
+    padding: 15px 15px 15px 15px;
+    border: 0px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    margin: 10px 0px 0px;
+    color: rgb(12, 45, 200);
+    background: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    font-weight: 600;
+    outline:0px;
 }
 
 input[type=button] {
-padding:5px;
-padding-top:7px;
-padding-left:7px;
-padding-right:7px;
-margin-left:5px;
-margin-right:5px;
-color:#fff;
-font-size:14px;
-background-color:#33CC33;
-border-radius:3px;
-border:1px solid #279b27;
-border-bottom:3px solid #207f20;
-min-width:50px;
+font-size:18px;
+    padding: 15px 15px 15px 15px;
+    border: 0px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    margin: 10px 0px 0px;
+    color: rgb(0, 0, 0);
+    background: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    font-weight: 600;
+    outline:0px;
 }
 
 input.Del {
-color:#fff;
-background-color:#ed3844;
-border:1px solid #9a1119;
-border-bottom:3px solid #790d14;
+font-size:18px;
+    padding: 15px 15px 15px 15px;
+    border: 0px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    margin: 10px 0px 0px;
+    color: #ed3844;
+    background: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    font-weight: 600;
+    outline:0px;
 }
 
 .box {
