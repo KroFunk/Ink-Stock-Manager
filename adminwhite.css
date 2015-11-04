@@ -11,7 +11,8 @@ background-color:rgba(255,255,255,0);
 padding:10px;
 outline:0px;
 }
-input[type=submit] {
+
+.submit {
 font-size:18px;
     padding: 15px 15px 15px 15px;
     border: 0px;
@@ -28,7 +29,7 @@ font-size:18px;
     outline:0px;
 }
 
-input[type=button] {
+.button {
 font-size:18px;
     padding: 15px 15px 15px 15px;
     border: 0px;
@@ -44,6 +45,7 @@ font-size:18px;
     font-weight: 600;
     outline:0px;
 }
+
 
 input.Del {
 font-size:18px;

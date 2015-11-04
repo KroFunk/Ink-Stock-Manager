@@ -8,7 +8,7 @@ $SQLPass="root";
 $SQLDB="InkStock";
 
 //URL Setting
-$Location = "http://localhost:8080/Ink-Stock-Manager";
+$Location = "http://localhost/Ink-Stock-Manager";
 
 //Currency
 $Currency = "&pound;";

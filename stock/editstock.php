@@ -33,6 +33,8 @@ xmlhttp.send("action=liststock&IID=<?php echo $index; ?>");
 }
 function Populate(arr) {
 	document.getElementById("title").innerHTML="Edit "+arr.data[0]['InkName']+" <span style='font-size:12px;'>(for "+arr.data[0]['Printer']+")</span>";
+	document.getElementById("printer").value=arr.data[0]['Printer'];
+	document.getElementById("pid").value=arr.data[0]['PID'];
 	document.getElementById("inkname").value=arr.data[0]['InkName'];
 	document.getElementById("price").value=arr.data[0]['Price'];
 	document.getElementById("stockwarning").value=arr.data[0]['StockWarning'];
@@ -42,6 +44,33 @@ function Populate(arr) {
 	document.getElementById("orderurl").value=arr.data[0]['OrderURL'];
 	document.getElementById("UPC").value=arr.data[0]['UPC'];
 }
+
+
+function editstock() {
+var PID = document.getElementById("pid").value;
+var InkName = document.getElementById("inkname").value;
+var Price = document.getElementById("price").value;
+var StockWarning = document.getElementById("stockwarning").value;
+var StockDefault = document.getElementById("stockdefault").value;
+var ProductCode = document.getElementById("productcode").value;
+var Description = document.getElementById("description").value;
+var OrderURL = document.getElementById("orderurl").value;
+var UPC = document.getElementById("UPC").value;
+var xmlhttp = new XMLHttpRequest();
+var url = "<?php echo $Location; ?>/api/v1/list/update.php";
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArr = JSON.parse(xmlhttp.responseText);
+        Populate(myArr);
+        //console.debug(myArr);
+    }
+}
+xmlhttp.open("POST", url, true);
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xmlhttp.send("action=updatestock&IID=<?php echo $index; ?>");
+}
+
 </script>
 </head>
 <body>
@@ -51,12 +80,12 @@ function Populate(arr) {
 	<table style='width:100%;margin-bottom:10px;' cellspacing='0' cellpadding='5'>
 	<thead>
 	<tr style="background-color:#666; color:#eee;">
-	<td>Ink Name</td><td>Price</td><td>Stock Warning</td><td>Stock Default</td>
+	<td>Printer</td><td>Ink Name</td><td>Price</td><td>Stock Warning</td><td>Stock Default</td>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
-	<td><input type='text' id='inkname' name='inkname' /></td><td><input type='text' id='price' name='price' value='<?php echo $Currency; ?>' /></td><td><input type='text' id='stockwarning' name='stockwarning' /></td><td><input type='text' id='stockdefault' name='stockdefault' /></td>
+	<td><input type='hidden' id='pid' name='pid' /><input style='width:190px;' type='text' id='printer' name='printer' /></td><td><input style='width:190px;' type='text' id='inkname' name='inkname' /></td><td><input style='width:115px;' type='text' id='price' name='price' value='<?php echo $Currency; ?>' /></td><td><input style='width:115px;' type='text' id='stockwarning' name='stockwarning' /></td><td><input style='width:115px;' type='text' id='stockdefault' name='stockdefault' /></td>
 	</tr>
 	</tbody>
 	</table>
@@ -69,11 +98,11 @@ function Populate(arr) {
 	</thead>
 	<tbody>
 	<tr>
-	<td><input type='text' id='productcode' name='productcode' /></td><td><input type='text' id='description' name='description' /></td><td><input type='text' id='orderurl' name='orderurl' /></td><td><input type='text' id='UPC' name='UPC' /></td>
+	<td><input style='width:190px;' type='text' id='productcode' name='productcode' /></td><td><input style='width:190px;' type='text' id='description' name='description' /></td><td><input style='width:190px;' type='text' id='orderurl' name='orderurl' /></td><td><input style='width:190px;' type='text' id='UPC' name='UPC' /></td>
 	</tr>
 	</tbody>
 	</table>
-	<div style='text-align:right;'><input type='button' name='' value='Cancel' /><input type='submit' name='' value='Update' /></div>
+	<div style='text-align:right;'><input type='button' class='button' onclick='parent.closewrapper();' name='' value='Cancel' /><input type='button' class='submit' onclick='editstock();' name='' value='Update' /></div>
 
 
 </body>
