@@ -132,6 +132,10 @@ StockWarning:
 <input  type="text" name="stockwarning" ><br/>
 StockDefault:
 <input  type="text" name="stockdefault" ><br/>
+ProductCode:
+<input  type="text" name="productcode" ><br/>
+Description:
+<input  type="text" name="description" ><br/>
 OrderURL:
 <input  type="text" name="orderurl" ><br/>
 OnOrder:
