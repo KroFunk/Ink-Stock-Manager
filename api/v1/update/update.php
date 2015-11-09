@@ -1,6 +1,6 @@
 <?PHP
-require "../config/config.php";
-require "../config/authcheck.php";
+require "../../../config/config.php";
+require "../../../auth/authcheck.php";
 
 $Response['operation'] = "update";
 $Response['response'] = array();
@@ -32,6 +32,16 @@ if($_POST['action'] == "updatestock"){
      if($_POST['stockdefault'] != "") {
      $stockdefault = "`StockDefault` = '" . $_POST['stockdefault'] . "', ";
      }
+     
+     
+     if($_POST['productcode'] != "") {
+     $productcode = "`ProductCode` = '" . $_POST['productcode'] . "', ";
+     }
+     if($_POST['description'] != "") {
+     $description = "`Description` = '" . $_POST['description'] . "', ";
+     }
+     
+     
      if($_POST['orderurl'] != "") {
      $orderurl = "`OrderURL` = '" . $_POST['orderurl'] . "', ";
      }
@@ -42,7 +52,7 @@ if($_POST['action'] == "updatestock"){
      $UPC = "`UPC` = '" . $_POST['UPC'] . "', ";
      }
      
-     $querystring = substr($PID . $inkname . $price . $stock . $stockwarning . $stockdefault . $orderurl . $onorder . $UPC, 0, -2);
+     $querystring = substr($PID . $inkname . $price . $stock . $stockwarning . $stockdefault . $productcode . $description . $orderurl . $onorder . $UPC, 0, -2);
      
      $IID = $_POST['IID'];
      
@@ -52,6 +62,7 @@ if($_POST['action'] == "updatestock"){
      $row = mysqli_fetch_array($result);
      $printer = $row['Printer'];
 	 $inkname = $row['InkName'];
+	 $encodedquery = htmlentities($querystring, ENT_QUOTES);
      mysqli_query($con,"INSERT INTO  `$SQLDB`.`AuditTrail` (
 `AID` ,
 `Date` ,
@@ -65,8 +76,8 @@ if($_POST['action'] == "updatestock"){
 `Note`
 )
 VALUES (
-NULL,  '$theDate',  '$theTime', '$CUID', '$printer',  '$inkname',  '-',  '-',  'Stock record was updated',  '$querystring'
-);");
+NULL,  '$theDate',  '$theTime', '$CUID', '$printer',  '$inkname',  '-',  '-',  'Stock record was updated',  '$encodedquery'
+);") or die ('Unable to execute query. '. mysqli_error($con));
      
      
      $Response['response'][] = array( "request" => "updatestock", "status" => "success");
