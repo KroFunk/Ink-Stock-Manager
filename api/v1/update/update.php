@@ -11,44 +11,43 @@ $theTime = date('H') . ":" . date('i');
 
 if($_POST['action'] == "updatestock"){
 
-     
      if(is_numeric($_POST['IID'])) {
      
-     if($_POST['PID'] != "") {
+     $IID = $_POST['IID'];
+     $result = mysqli_query($con, "SELECT * FROM Stock WHERE `IID` = $IID");
+     $current = mysqli_fetch_array($result);
+     
+     if($_POST['PID'] != "" && $_POST['PID'] != $current['PID']) {
      $PID = "`PID` = '" . $_POST['PID'] . "', ";
      }
-     if($_POST['inkname'] != "") {
+     if($_POST['inkname'] != "" && $_POST['inkname'] != $current['InkName']) {
      $inkname = "`InkName` = '" . $_POST['inkname'] . "', ";
      }
-     if($_POST['price'] != "") {
+     if($_POST['price'] != "" && $_POST['price'] != $current['Price']) {
      $price = "`Price` = '" . $_POST['price'] . "', ";
      }
-     if($_POST['stock'] != "") {
+     if($_POST['stock'] != "" && $_POST['stock'] != $current['Stock']) {
      $stock = "`Stock` = '" . $_POST['stock'] . "', ";
      }
-     if($_POST['stockwarning'] != "") {
+     if($_POST['stockwarning'] != "" && $_POST['stockwarning'] != $current['StockWarning']) {
      $stockwarning = "`StockWarning` = '" . $_POST['stockwarning'] . "', ";
      }
-     if($_POST['stockdefault'] != "") {
+     if($_POST['stockdefault'] != "" && $_POST['stockdefault'] != $current['StockDefault']) {
      $stockdefault = "`StockDefault` = '" . $_POST['stockdefault'] . "', ";
      }
-     
-     
-     if($_POST['productcode'] != "") {
+     if($_POST['productcode'] != "" && $_POST['productcode'] != $current['ProductCode']) {
      $productcode = "`ProductCode` = '" . $_POST['productcode'] . "', ";
      }
-     if($_POST['description'] != "") {
+     if($_POST['description'] != "" && $_POST['description'] != $current['Description']) {
      $description = "`Description` = '" . $_POST['description'] . "', ";
      }
-     
-     
-     if($_POST['orderurl'] != "") {
+     if($_POST['orderurl'] != "" && $_POST['orderurl'] != $current['OrderURL']) {
      $orderurl = "`OrderURL` = '" . $_POST['orderurl'] . "', ";
      }
-     if($_POST['onorder'] != "") {
+     if($_POST['onorder'] != "" && $_POST['onorder'] != $current['OnOrder']) {
      $onorder = "`OnOrder` = '" . $_POST['onorder'] . "', ";
      }
-     if($_POST['UPC'] != "") {
+     if($_POST['UPC'] != "" && $_POST['UPC'] != $current['UPC']) {
      $UPC = "`UPC` = '" . $_POST['UPC'] . "', ";
      }
      
