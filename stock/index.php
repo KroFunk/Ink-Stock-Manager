@@ -122,7 +122,7 @@ cell5.innerHTML = '<div class="right">' + arr.data[i]['OnOrder'] + '</div>';
 cell6.innerHTML = '<div class="centre"><a href="javascript:popout(' + arr.data[i]['OrderURL'] + ')"><img src="../icns/order.png"></a></div>';
 //cell7.innerHTML = //Spacing Cell
 cell8.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'editstock.php?index=" + arr.data[i]['IID'] + "','920','315'" + ')"><img src="../icns/edit.png"></a></div>';
-cell9.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'auditview.php?index=" + arr.data[i]['InkName'] + "','920','320'" + ')"><img src="../icns/audit.png"></a></div>';
+cell9.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'auditview.php?index=" + arr.data[i]['InkName'] + "','980','520'" + ')"><img src="../icns/audit.png"></a></div>';
 cell10.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'addstock.php?index=" + arr.data[i]['IID'] + "','920','320'" + ')"><img src="../icns/plus.png"></a>&nbsp;' + '&nbsp;<a href="javascript:openwrapper(' + "'removestock.php?index=" + arr.data[i]['IID'] + "','920','320'" + ')"><img src="../icns/minus.png"></a></div>';
 
 
@@ -237,9 +237,6 @@ Server message would go here!
 <p style="margin:0px;padding:0px;clear:both;text-align:center;"></p>
 </div>
 
-<?PHP
-mysqli_close($con);
-?>
 
 
 <div class="footerfill"></div>
