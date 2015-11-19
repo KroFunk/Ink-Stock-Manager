@@ -304,6 +304,12 @@ z-index: 999999;
 
 }
 
+#Iframe {
+border:1px solid #666;
+border-radius: 2px; 
+box-shadow: rgb(0, 0, 0) 0px 0px 20px; 
+}
+
 #grey {
 position:fixed; 
 left:-5%; 
