@@ -210,7 +210,7 @@ Server message would go here!
 <div>
 
 <div class='function'>
-<a class="function wrapper" href="javascript:openwrapper('addnew.php', '800', '220')"><img src="../icns/new.png"/> Add New Ink/Toner</a>
+<a class="function wrapper" href="javascript:openwrapper('addnew.php', '920', '315')"><img src="../icns/new.png"/> Add New Ink/Toner</a>
 <a class="function refresh" href="javascript:void(0);" onclick="PopulateData();"><img src="../icns/refresh.png"/> Refresh!</a>
 <a class="function wrapper" href="javascript:openwrapper('scanin.php', '640', '420')"><img src="../icns/UPC.png"/> Scan Stock In</a>
 <a class="function wrapper" href="javascript:openwrapper('scanout.php', '640', '420')"><img src="../icns/UPC.png"/> Scan Stock Out</a>
