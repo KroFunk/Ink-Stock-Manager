@@ -118,12 +118,12 @@ xmlhttp.send("action=listprinters");
 	<table style='width:100%;margin-bottom:10px;' cellspacing='0' cellpadding='5'>
 	<thead>
 	<tr style="background-color:#666; color:#eee;">
-	<td>Printer</td><td>Ink Name</td><td>Price</td><td>Stock Warning</td><td>Stock Default</td>
+	<td style='width:220px;'>Printer</td><td style='width:200px;'>Ink Name</td><td>Price</td><td>Stock Warning</td><td>Stock Default</td>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
-	<td><input type='hidden' id='pid' name='pid' /><input onclick='showprinterlist();' style='width:190px;' type='text' id='printer' name='printer' /></td><td><input style='width:190px;' type='text' id='inkname' name='inkname' /></td><td><input style='width:115px;' type='text' id='price' name='price' value='<?php echo $Currency; ?>' /></td><td><input style='width:115px;' type='text' id='stockwarning' name='stockwarning' /></td><td><input style='width:115px;' type='text' id='stockdefault' name='stockdefault' /></td>
+	<td><input type='hidden' id='pid' name='pid' /><input onclick='showprinterlist();' style='width:200px;' type='text' id='printer' name='printer' /></td><td><input style='width:180px;' type='text' id='inkname' name='inkname' /></td><td><input style='width:115px;' type='text' id='price' name='price' value='<?php echo $Currency; ?>' /></td><td><input style='width:115px;' type='text' id='stockwarning' name='stockwarning' /></td><td><input style='width:115px;' type='text' id='stockdefault' name='stockdefault' /></td>
 	</tr>
 	</tbody>
 	</table>
