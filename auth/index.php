@@ -7,16 +7,6 @@ require ('../config/config.php');
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,100' rel='stylesheet' type='text/css'>
 <link href='../admin.css' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="../incs/jquery.min.js"></script>
-<script>
-window.onload = function() {
-if (document.getElementById('email').value=='Email Address'){
-document.getElementById('email').style.color='grey';
-}
-document.getElementById('password').value='Password';
-document.getElementById('password').style.color='grey';
-}
-</script>
-
 
 <script>
 //Attempt Login
@@ -84,8 +74,8 @@ if($authresult != NULL) { //i.e. if there are users, show the login.
 </div>
 
 <form action="<?php echo $Location; ?>/api/v1/authentication/" method="POST" onsubmit="return AttemptLogin();">
-<input class="textbox" id="email" type="email" value="Email Address"  onclick="if(this.value=='Email Address'){this.value='';this.style.color='black';}" onblur="if(this.value==''){this.value='Email Address';this.style.color='grey';}" name="email" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;"><br/>
-<input class="textbox" id="password" type="text" value="Password" onClick="" onFocus="this.type='password';this.style.color='black'; if(this.value=='Password'){this.value='';}" onblur="if(this.value==''){this.value='Password';this.type='text';this.style.color='grey';}" name="password" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;color:grey;"><br/>
+<input class="textbox" id="email" type="email" placeholder="Email Address" name="email" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;"><br/>
+<input class="textbox" id="password" type="password" placeholder="Password" name="password" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;"><br/>
 <input type="hidden" name="action" value="login" />
 <input class="textbox" type="submit" onclick="return AttemptLogin();" value="Login" style="width:250px; font-size:14px; background-color:#297ACC; border-color:#103152; color:#fff; padding:5px;margin-bottom:25px;" />
 </form>
@@ -98,9 +88,9 @@ else { //show user creation if there are no users
 <h1>Ink Stock Manager installation complete!</h1>
 <h2>Please create the first administrator.</h2>
 <form action="firstuser.php" method="POST">
-<input class="textbox" id="name" type="text" value="Name" onClick="" onFocus="this.style.color='black'; if(this.value=='Name'){this.value='';}" onblur="if(this.value==''){this.value='Name';this.style.color='grey';}" name="name" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;color:grey;"><br/>
-<input class="textbox" id="email" type="email" value="Email Address"  onclick="if(this.value=='Email Address'){this.value='';this.style.color='black';}" onblur="if(this.value==''){this.value='Email Address';this.style.color='grey';}" name="email" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;"><br/>
-<input class="textbox" id="password" type="text" value="Password" onClick="" onFocus="this.type='password';this.style.color='black'; if(this.value=='Password'){this.value='';}" onblur="if(this.value==''){this.value='Password';this.type='text';this.style.color='grey';}" name="password" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;color:grey;"><br/>
+<input class="textbox" id="name" type="text" placeholder="Name" name="name" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;"><br/>
+<input class="textbox" id="email" type="email" placeholder="Email Address" name="email" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;"><br/>
+<input class="textbox" id="password" type="password" placeholder="Password" name="password" style="width:250px; font-size:14px; padding:5px;margin-bottom:2px;"><br/>
 <input class="textbox" type="submit" value="Create" style="width:250px; font-size:14px; background-color:#297ACC; border-color:#103152; color:#fff; padding:5px;margin-bottom:25px;" />
 </form>
 
