@@ -119,7 +119,7 @@ cell2.innerHTML = '<div class="right">' + "<?php echo $Currency ?>" + arr.data[i
 cell3.innerHTML = '<div class="right">' + arr.data[i]['Stock'] + '</div>';
 cell4.innerHTML = '<div class="right">' + "<?php echo $Currency ?>" + (arr.data[i]['Price'] * arr.data[i]['Stock']).toFixed(2) + '</div>';
 cell5.innerHTML = '<div class="right">' + arr.data[i]['OnOrder'] + '</div>';
-cell6.innerHTML = '<div class="centre"><a href="javascript:popout(' + arr.data[i]['OrderURL'] + ')"><img src="../icns/order.png"></a></div>';
+cell6.innerHTML = '<div class="centre"><a href="javascript:popup(' + "'" + arr.data[i]['OrderURL'] + "'" + ')"><img src="../icns/order.png"></a></div>';
 //cell7.innerHTML = //Spacing Cell
 cell8.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'editstock.php?index=" + arr.data[i]['IID'] + "','920','315'" + ')"><img src="../icns/edit.png"></a></div>';
 cell9.innerHTML = '<div class="centre"><a href="javascript:openwrapper(' + "'auditview.php?index=" + arr.data[i]['InkName'] + "','980','520'" + ')"><img src="../icns/audit.png"></a></div>';
