@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Sep 04, 2015 at 01:53 PM
+-- Generation Time: Dec 01, 2015 at 07:17 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -29,7 +29,7 @@ USE `inkstock`;
 --
 
 DROP TABLE IF EXISTS `audittrail`;
-CREATE TABLE `audittrail` (
+CREATE TABLE IF NOT EXISTS `audittrail` (
 `AID` int(11) NOT NULL,
   `Date` date NOT NULL,
   `Time` text NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `audittrail` (
   `Department` text NOT NULL,
   `Detail` text NOT NULL,
   `Note` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=532 DEFAULT CHARSET=latin1 COMMENT='Audit data for building reports etc.';
+) ENGINE=InnoDB AUTO_INCREMENT=551 DEFAULT CHARSET=latin1 COMMENT='Audit data for building reports etc.';
 
 -- --------------------------------------------------------
 
@@ -49,7 +49,7 @@ CREATE TABLE `audittrail` (
 --
 
 DROP TABLE IF EXISTS `departments`;
-CREATE TABLE `departments` (
+CREATE TABLE IF NOT EXISTS `departments` (
 `DID` int(11) NOT NULL,
   `Room` text NOT NULL,
   `PID` int(11) NOT NULL
@@ -62,7 +62,7 @@ CREATE TABLE `departments` (
 --
 
 DROP TABLE IF EXISTS `eod`;
-CREATE TABLE `eod` (
+CREATE TABLE IF NOT EXISTS `eod` (
 `EODID` int(11) NOT NULL,
   `PID` text NOT NULL,
   `InkName` text NOT NULL,
@@ -74,11 +74,26 @@ CREATE TABLE `eod` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+`OID` int(11) NOT NULL,
+  `UserID` int(11) NOT NULL,
+  `PONO` varchar(20) NOT NULL,
+  `OrderArray` text NOT NULL,
+  `OrderStatus` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `printers`
 --
 
 DROP TABLE IF EXISTS `printers`;
-CREATE TABLE `printers` (
+CREATE TABLE IF NOT EXISTS `printers` (
 `PID` int(11) NOT NULL,
   `PrinterMake` text NOT NULL,
   `PrinterModel` text NOT NULL,
@@ -96,7 +111,7 @@ CREATE TABLE `printers` (
 --
 
 DROP TABLE IF EXISTS `stock`;
-CREATE TABLE `stock` (
+CREATE TABLE IF NOT EXISTS `stock` (
 `IID` int(11) NOT NULL,
   `PID` int(11) NOT NULL,
   `InkName` text NOT NULL,
@@ -118,7 +133,7 @@ CREATE TABLE `stock` (
 --
 
 DROP TABLE IF EXISTS `stockchecks`;
-CREATE TABLE `stockchecks` (
+CREATE TABLE IF NOT EXISTS `stockchecks` (
 `SCID` int(11) NOT NULL,
   `Date` date NOT NULL,
   `Time` time NOT NULL,
@@ -135,14 +150,14 @@ CREATE TABLE `stockchecks` (
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
 `UserID` int(11) NOT NULL COMMENT 'Auto Incrementing UserID',
   `Email` text NOT NULL,
   `Name` text NOT NULL,
   `Password` text NOT NULL,
   `Admin` tinyint(1) NOT NULL,
   `Mail` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='User table for Authentication and Auditing';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='User table for Authentication and Auditing';
 
 --
 -- Indexes for dumped tables
@@ -165,6 +180,12 @@ ALTER TABLE `departments`
 --
 ALTER TABLE `eod`
  ADD PRIMARY KEY (`EODID`), ADD UNIQUE KEY `IID` (`EODID`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+ ADD PRIMARY KEY (`OID`), ADD KEY `OID` (`OID`);
 
 --
 -- Indexes for table `printers`
@@ -198,7 +219,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `audittrail`
 --
 ALTER TABLE `audittrail`
-MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=532;
+MODIFY `AID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=551;
 --
 -- AUTO_INCREMENT for table `departments`
 --
@@ -209,6 +230,11 @@ MODIFY `DID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=64;
 --
 ALTER TABLE `eod`
 MODIFY `EODID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2749;
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+MODIFY `OID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `printers`
 --
@@ -228,7 +254,7 @@ MODIFY `SCID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=331;
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Auto Incrementing UserID',AUTO_INCREMENT=6;
+MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Auto Incrementing UserID',AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
