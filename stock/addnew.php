@@ -22,32 +22,34 @@ function updatePrinter(pid,printerName) {
 	hidePrinterList();
 }
 
-function editstock() {
-//var PID = document.getElementById("pid").value;
+function addstock() {
+
+//IID is auto incremented
+var PID = document.getElementById("pid").value;
 var InkName = document.getElementById("inkname").value;
 var Price = document.getElementById("price").value;
+var Stock = '0';
 var StockWarning = document.getElementById("stockwarning").value;
 var StockDefault = document.getElementById("stockdefault").value;
 var ProductCode = document.getElementById("productcode").value;
 var Description = document.getElementById("description").value;
 var OrderURL = document.getElementById("orderurl").value;
+var OnOrder = '0';
 var UPC = document.getElementById("UPC").value;
 var xmlhttp = new XMLHttpRequest();
-var url = "<?php echo $Location; ?>/api/v1/update/update.php";
+var url = "<?php echo $Location; ?>/api/v1/create/create.php";
 
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         var myArr = JSON.parse(xmlhttp.responseText);
-        //Populate(myArr);
-        //alert("action=updatestock&PID=" + PID + "&inkname=" + InkName + "&=price" + Price + "&=stockwarning" + StockWarning + "&=stockdefault" + StockDefault + "&=productcode" + ProductCode + "&=description" + Description + "&=orderurl" + OrderURL + "&=UPC" + UPC + "&IID=<?php echo $index; ?>");
         //console.debug(myArr);
-        parent.document.getElementById("InfoOptions").innerHTML="<div class='servermessage'>" + InkName + " updated. Refreshing data.</div>";
+        parent.document.getElementById("InfoOptions").innerHTML="<div class='servermessage'>" + InkName + " has been added. Refreshing data.</div>";
         parent.closewrapper();
     }
 }
 xmlhttp.open("POST", url, true);
 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.send("action=updatestock&PID=" + PID + "&inkname=" + InkName + "&price=" + Price + "&=stockwarning" + StockWarning + "&stockdefault=" + StockDefault + "&productcode=" + ProductCode + "&description=" + Description + "&orderurl=" + OrderURL + "&UPC=" + UPC + "&IID=<?php echo $index; ?>");
+xmlhttp.send("action=createstock&PID=" + PID + "&inkname=" + InkName + "&price=" + Price + "&stock=" + Stock + "&stockwarning=" + StockWarning + "&stockdefault=" + StockDefault + "&productcode=" + ProductCode + "&description=" + Description + "&orderurl=" + OrderURL + "&onorder=" + OnOrder + "&UPC=" + UPC);
 }
 
 
@@ -108,7 +110,7 @@ xmlhttp.send("action=listprinters");
 	</tr>
 	</tbody>
 	</table>
-	<div style='text-align:right;'><input type='button' class='button' onclick='parent.closewrapper();' name='' value='Cancel' /><input type='button' class='submit' onclick='editstock();' name='' value='Update' /></div>
+	<div style='text-align:right;'><input type='button' class='button' onclick='parent.closewrapper();' name='' value='Cancel' /><input type='button' class='submit' onclick='addstock();' name='' value='Add New' /></div>
 
 
 </body>

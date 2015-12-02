@@ -217,7 +217,7 @@ Where DID EQUALS:
 <div data-role="collapsible" data-theme="a" data-content-theme="a">
 <h2>Create (Requires admin permissions)</h2>
 
-<p>PATH: <? echo $Location; ?>api/v1/list/create.php</p>
+<p>PATH: <? echo $Location; ?>api/v1/create/create.php</p>
 <p>Create API used to make new stock, printer and location records in the database.
 <strong><br/>This operation is recorded in the Audit</strong></p>
 
