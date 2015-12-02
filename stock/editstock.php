@@ -9,7 +9,7 @@ $InkName = "";
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<link href='../adminwhite.css' rel='stylesheet' type='text/css'>
+<link href='../adminwhite.css?id=1' rel='stylesheet' type='text/css'>
 <title>Edit Stock</title>
 <script>
 window.onload = function InitialRefesh() {   
@@ -105,11 +105,43 @@ xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xmlhttp.send("action=listprinters");
 }
 
+function deleteWarning () {
+IID = <?php echo $index; ?>;
+inkName = document.getElementById("inkname").value;
+wrapperContent = document.getElementById("wrapper").innerHTML;
+console.debug(wrapperContent);
+document.getElementById("wrapper").innerHTML = "<div style='text-align:center; margin-top:50px;'><h2>Are you sure you want to delete " + inkName + "?</h2><input type='button' class='button' onclick='deleteCancel();' name='' value='Cancel' /><input type='button' class='delete' onclick='deleteConfirm(`" + inkName + "`);' name='' value='Delete' />";
+}
 
+function deleteCancel () {
+console.debug('Delete Cancelled');
+document.getElementById("wrapper").innerHTML = wrapperContent;
+PopulateData();
+}
+
+function deleteConfirm (InkName) {
+var xmlhttp = new XMLHttpRequest();
+var url = "<?php echo $Location; ?>/api/v1/update/update.php";
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArr = JSON.parse(xmlhttp.responseText);
+        //Populate(myArr);
+        //alert("action=updatestock&PID=" + PID + "&inkname=" + InkName + "&=price" + Price + "&=stockwarning" + StockWarning + "&=stockdefault" + StockDefault + "&=productcode" + ProductCode + "&=description" + Description + "&=orderurl" + OrderURL + "&=UPC" + UPC + "&IID=<?php echo $index; ?>");
+        //console.debug(myArr);
+        parent.document.getElementById("InfoOptions").innerHTML="<div class='servermessage'>" + InkName + " deleted. Refreshing data.</div>";
+        parent.closewrapper();
+    }
+}
+xmlhttp.open("POST", url, true);
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xmlhttp.send("action=updatestock&deleted=1&IID=<?php echo $index; ?>");
+}
 
 </script>
 </head>
 <body>
+<div id='wrapper'>
 <div id="InfoOptions"></div>
 <h1 id='title'>Edit<?php echo $InkName; ?></h1>
 
@@ -139,9 +171,9 @@ xmlhttp.send("action=listprinters");
 	<td><input style='width:190px;' type='text' id='productcode' name='productcode' /></td><td><input style='width:190px;' type='text' id='description' name='description' /></td><td><input style='width:190px;' type='text' id='orderurl' name='orderurl' /></td><td><input style='width:190px;' type='text' id='UPC' name='UPC' /></td>
 	</tr>
 	</tbody>
-	</table>
+	</table><div style='float:left;'><input type='button' class='delete' onclick='deleteWarning();' name='' value='Delete' /></div>
 	<div style='text-align:right;'><input type='button' class='button' onclick='parent.closewrapper();' name='' value='Cancel' /><input type='button' class='submit' onclick='editstock();' name='' value='Update' /></div>
-
+</div>
 
 </body>
 </html>
