@@ -13,6 +13,20 @@ $InkName = "";
 <title>New Stock</title>
 <script>
 
+function testCurrency() {
+var regex = /^£\d{1,3}(,\d{3})*(\.\d{2})?$/;
+//var numStr = document.getElementById('price').value;
+var numStr = String.fromCharCode(event.keyCode)
+if (regex.test(numStr)) {
+	//alert('good');
+    return true;
+    }
+    else {
+    //alert('bad');
+    return false;
+    }
+}
+
 function hidePrinterList() {
         document.getElementById("printerlist").style.display='none';
 }
@@ -93,7 +107,7 @@ xmlhttp.send("action=listprinters");
 	</thead>
 	<tbody>
 	<tr>
-	<td><input type='hidden' id='pid' name='pid' /><input onclick='showprinterlist();' style='width:200px;' type='text' id='printer' name='printer' /></td><td><input style='width:180px;' type='text' id='inkname' name='inkname' /></td><td><input style='width:115px;' type='text' id='price' name='price' value='<?php echo $Currency; ?>' /></td><td><input style='width:115px;' type='text' id='stockwarning' name='stockwarning' /></td><td><input style='width:115px;' type='text' id='stockdefault' name='stockdefault' /></td>
+	<td><input type='hidden' id='pid' name='pid' /><input onclick='showprinterlist();' style='width:200px;' type='text' id='printer' name='printer' /></td><td><input style='width:180px;' type='text' id='inkname' name='inkname' /></td><td><?php echo $Currency; ?><input style='width:115px;' onkeypress='return testCurrency();' type='text' id='price' name='price' value='' /><input type='button' value='test' onclick='testCurrency();'/></td><td><input style='width:115px;' type='text' id='stockwarning' name='stockwarning' /></td><td><input style='width:115px;' type='text' id='stockdefault' name='stockdefault' /></td>
 	</tr>
 	</tbody>
 	</table>
