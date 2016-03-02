@@ -6,7 +6,7 @@ $SQLPass="root";
 $SQLDB="InkStock";
 
 //URL Setting
-$Location = "http://localhost:8888/Ink-Stock-Manager";
+$Location = "http://localhost/Ink-Stock-Manager";
 
 //########################################################################################
 //###################### Nothing should be changed below this point ######################
@@ -21,7 +21,9 @@ echo "Connection to the database fell over: " . mysqli_connect_error();
 }
 //Checking Authentication. Same file as the SQL connection details to avoid spoofing. 
 //Run check if user is not currently in the process of logging in
-if ($_SERVER["REQUEST_URI"] != $Location . "/auth/auth.php") {
+$path = 'http://' . $_SERVER[HTTP_HOST] . $_SERVER["REQUEST_URI"];
+if ($path != $Location . "/auth/auth.php") { 
+echo $path . ' is not  ' . $Location . "/auth/auth.php";
 if(isset($_SESSION['CUID'])){
 $CUID = $_SESSION['CUID'];
 $authquery = mysqli_query($con, "SELECT * 
