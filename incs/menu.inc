@@ -8,6 +8,7 @@ Ink Stock Manager
 <a href='<?php echo $Location ?>/audit'>Audit</a> 
 <a href='<?php echo $Location ?>/stockcheck/' target='_new'>Stock Check</a> 
 <a href="javascript:ShowHide('ReportsMenu');">Reports</a> 
+<a href='<?php echo $Location ?>/pcounter'>PCounter Logs</a> 
 </div>
 <a href='<?php echo $Location ?>/manageusers/' target='_self'>Manage users</a> 
 <a href='<?php echo $Location ?>/auth/auth.php?action=logout'>logout</a>

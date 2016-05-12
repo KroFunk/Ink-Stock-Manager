@@ -229,7 +229,7 @@ margin-left:1px;
 padding-left:30px;
 width:100px;
 height:30px;
-background:url(../icns/calendar2.jpg);
+background:url(icns/calendar2.jpg);
 background-repeat:no-repeat;
 background-position:left center;
 }
@@ -330,7 +330,7 @@ text-align:right;
 background-color:#eee;
 }
 .even {
-
+background-color:#fff;
 }
 .ListItem {
 	border-bottom:1px solid #ccc;

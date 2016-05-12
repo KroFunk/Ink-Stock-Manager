@@ -45,7 +45,7 @@ $theTime = date('H') . ":" . date('i');
 $UserID = $_SESSION['CUID'];
 $detail = $_GET['detail'];
 
-mysqli_query($con,"INSERT INTO  `InkStock`.`AuditTrail` (
+mysqli_query($con,"INSERT INTO  `$SQLDB`.`AuditTrail` (
 `AID` ,
 `Date` ,
 `Time` ,
