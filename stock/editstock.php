@@ -125,17 +125,18 @@ var url = "<?php echo $Location; ?>/api/v1/update/update.php";
 
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        var myArr = JSON.parse(xmlhttp.responseText);
+        //var myArr = JSON.parse(xmlhttp.responseText);
         //Populate(myArr);
         //alert("action=updatestock&PID=" + PID + "&inkname=" + InkName + "&=price" + Price + "&=stockwarning" + StockWarning + "&=stockdefault" + StockDefault + "&=productcode" + ProductCode + "&=description" + Description + "&=orderurl" + OrderURL + "&=UPC" + UPC + "&IID=<?php echo $index; ?>");
         //console.debug(myArr);
+		//document.getElementById("wrapper").innerHTML = xmlhttp.responseText;
         parent.document.getElementById("InfoOptions").innerHTML="<div class='servermessage'>" + InkName + " deleted. Refreshing data.</div>";
         parent.closewrapper();
     }
 }
 xmlhttp.open("POST", url, true);
 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.send("action=updatestock&deleted=1&IID=<?php echo $index; ?>");
+xmlhttp.send("deleted=1&action=updatestock&IID=<?php echo $index; ?>");
 }
 
 </script>

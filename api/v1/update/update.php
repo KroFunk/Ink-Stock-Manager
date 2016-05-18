@@ -50,7 +50,7 @@ if($_POST['action'] == "updatestock"){
      if($_POST['UPC'] != "" && $_POST['UPC'] != $current['UPC']) {
      $UPC = "`UPC` = '" . $_POST['UPC'] . "', ";
      }
-     if($_POST['deleted'] != "" && $_POST['deleted'] != $current['Deleted']) {
+     if(!empty($_POST['deleted']) && $_POST['deleted'] != $current['Deleted']) {
      $deleted = "`Deleted` = '" . $_POST['deleted'] . "', ";
      }
      
@@ -58,6 +58,7 @@ if($_POST['action'] == "updatestock"){
      $querystring = substr($PID . $inkname . $price . $stock . $stockwarning . $stockdefault . $productcode . $description . $orderurl . $onorder . $UPC . $deleted, 0, -2);
      
      $IID = $_POST['IID'];
+     
      
      mysqli_query($con, "UPDATE `$SQLDB`.`stock` SET " . $querystring . " WHERE `stock`.`IID` = $IID;") or die ('Unable to execute query. '. mysqli_error($con));
      

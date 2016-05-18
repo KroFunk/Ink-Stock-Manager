@@ -13,7 +13,7 @@ if (isset($_GET['action'])) {
 
 if(@$_GET['action'] == "liststocktables"){
 		$WHERE = "";
-	$result = mysqli_query($con, "SELECT * FROM Stock LEFT JOIN Printers ON Stock.PID=Printers.PID ORDER BY Printers.PrinterMake ASC, Printers.PrinterModel ASC");
+	$result = mysqli_query($con, "SELECT * FROM Stock LEFT JOIN Printers ON Stock.PID=Printers.PID WHERE `stock`.`Deleted` = 0 ORDER BY Printers.PrinterMake ASC, Printers.PrinterModel ASC");
 	while($row = mysqli_fetch_array($result))
 	{   
 	$Response['data'][] = array( "IID" => $row['IID'], 
