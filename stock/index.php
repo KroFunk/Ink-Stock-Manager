@@ -87,7 +87,7 @@ odds = 0;
 
 // Create an empty <tr> element and add it to the 1st position of the table:
 var row = table.insertRow(Rows);
-row.style.backgroundColor = Colouring(arr.data[i]['Stock'], arr.data[i]['StockDefault'], arr.data[i]['OnOrder']);
+row.style.backgroundColor = Colouring(arr.data[i]['Stock'], arr.data[i]['StockWarning'], arr.data[i]['OnOrder']);
 row.id = RowCount;
 RowCount++;
 
